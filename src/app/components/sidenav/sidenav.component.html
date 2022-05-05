@@ -1,0 +1,12 @@
+<mat-drawer-container class="app-sidenav__container" [hasBackdrop]="false">
+  <mat-drawer opened [mode]="'push'">
+    <mat-selection-list [multiple]="false" color="primary">
+      <mat-list-option *ngFor="let page of pages" [value]="page.value">
+        {{ page.name }}
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <ng-content></ng-content>
+  </mat-drawer-content>
+</mat-drawer-container>
