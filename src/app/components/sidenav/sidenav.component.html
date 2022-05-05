@@ -1,5 +1,5 @@
 <mat-drawer-container class="app-sidenav__container" [hasBackdrop]="false">
-  <mat-drawer opened [mode]="'push'" class="app-sidenav__drawer">
+  <mat-drawer opened disableClose [mode]="'push'" class="app-sidenav__drawer">
     <mat-selection-list [multiple]="false" color="primary">
       <mat-list-option *ngFor="let page of pages" [value]="page.value">
         {{ page.name }}

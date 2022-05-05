@@ -7,12 +7,16 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { HomeComponent } from './pages/home/home.component';
+import { PatientsComponent } from './pages/patients/patients.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SidenavComponent
+    SidenavComponent,
+    HomeComponent,
+    PatientsComponent
   ],
   imports: [
     BrowserModule,
