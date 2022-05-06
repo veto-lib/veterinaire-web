@@ -5,10 +5,13 @@ import { AuthGuard } from './guards/auth.guard';
 
 import { HomeComponent } from './pages/home/home.component';
 import { PatientsComponent } from './pages/patients/patients.component';
+import { AgendaComponent } from './pages/agenda/agenda.component';
 
 const routes: Routes = [
-  { path: 'patients', component: PatientsComponent, canActivate: [AuthGuard] },
-  { path: '**', component: HomeComponent }
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'agenda', component: AgendaComponent },
+  { path: 'patients', component: PatientsComponent },
+  { path: '**', redirectTo: '/' }
 ];
 
 @NgModule({

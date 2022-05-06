@@ -9,6 +9,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PatientsComponent } from './pages/patients/patients.component';
+import { AgendaComponent } from './pages/agenda/agenda.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,11 @@ import { PatientsComponent } from './pages/patients/patients.component';
     HeaderComponent,
     SidenavComponent,
     HomeComponent,
-    PatientsComponent
+    PatientsComponent,
+    AgendaComponent
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     SharedModule,

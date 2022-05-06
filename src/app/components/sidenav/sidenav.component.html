@@ -1,8 +1,23 @@
 <mat-drawer-container class="app-sidenav__container" [hasBackdrop]="false">
   <mat-drawer opened disableClose [mode]="'push'" class="app-sidenav__drawer">
     <mat-selection-list [multiple]="false" color="primary">
-      <mat-list-option *ngFor="let page of pages" [value]="page.value" [routerLink]="page.redirect">
-        {{ page.name }}
+      <mat-list-option
+        [routerLink]="'/patients'"
+        [selected]="router.url === '/patients'"
+      >
+        Mes patients
+      </mat-list-option>
+      <mat-list-option
+        [routerLink]="'/agenda'"
+        [selected]="router.url === '/agenda'"
+      >
+        Agenda
+      </mat-list-option>
+      <mat-list-option
+        [routerLink]="'/informations'"
+        [selected]="router.url === '/informations'"
+      >
+        Mes informations
       </mat-list-option>
     </mat-selection-list>
   </mat-drawer>

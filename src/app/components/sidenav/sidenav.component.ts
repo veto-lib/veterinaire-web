@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,10 +8,5 @@ import { Component } from '@angular/core';
 })
 export class SidenavComponent {
 
-  pages = [
-    { name: 'Mes patients', value: 'patients', redirect: '/patients' },
-    { name: 'Agenda', value: 'agenda', redirect: '/' },
-    { name: 'Mes Informations', value: 'informations', redirect: '/' },
-  ];
-
+  constructor(public router: Router) {}
 }
