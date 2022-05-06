@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
 export class SidenavComponent {
 
   pages = [
-    { name: 'Mes patients', value: 'patients' },
-    { name: 'Agenda', value: 'agenda' },
-    { name: 'Mes Informations', value: 'informations' },
+    { name: 'Mes patients', value: 'patients', redirect: '/patients' },
+    { name: 'Agenda', value: 'agenda', redirect: '/' },
+    { name: 'Mes Informations', value: 'informations', redirect: '/' },
   ];
 
 }
