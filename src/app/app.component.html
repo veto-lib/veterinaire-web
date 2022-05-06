@@ -1,9 +1,7 @@
 <app-header></app-header>
 
-<app-sidenav *ngIf="canDisplaySidenav">
+<app-sidenav [opened]="canDisplaySidenav">
   <div class="app-root__content">
     <router-outlet></router-outlet>
   </div>
 </app-sidenav>
-
-<router-outlet *ngIf="!canDisplaySidenav"></router-outlet>
