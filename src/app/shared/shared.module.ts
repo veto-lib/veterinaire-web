@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [],
@@ -29,7 +29,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatFormFieldModule,
     MatSelectModule,
     MatListModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTableModule,
   ]
 })
 export class SharedModule { }

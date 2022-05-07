@@ -1,1 +1,35 @@
-<p>patients works!</p>
+<h1>Mes Patients</h1>
+
+<table
+  mat-table
+  [dataSource]="patients"
+  class="app-patients__table"
+>
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef>First Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef>Last Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="birthDate">
+    <th mat-header-cell *matHeaderCellDef>Birth Date</th>
+    <td mat-cell *matCellDef="let element">{{ element.birthDate }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="gender">
+    <th mat-header-cell *matHeaderCellDef>Gender</th>
+    <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="favorite">
+    <th mat-header-cell *matHeaderCellDef>Favorite</th>
+    <td mat-cell *matCellDef="let element">{{ element.favorite }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
