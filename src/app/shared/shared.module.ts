@@ -11,7 +11,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table'
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [],
@@ -31,6 +33,8 @@ import { MatTableModule } from '@angular/material/table';
     MatListModule,
     MatTooltipModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ]
 })
 export class SharedModule { }
