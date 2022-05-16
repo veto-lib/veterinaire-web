@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,12 +16,9 @@ import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -37,4 +32,4 @@ import { MatSortModule } from '@angular/material/sort';
     MatSortModule,
   ]
 })
-export class SharedModule { }
+export class MaterialModule { }
