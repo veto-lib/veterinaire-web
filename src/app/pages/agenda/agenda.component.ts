@@ -32,18 +32,7 @@ const colors: any = {
 @Component({
   selector: 'app-agenda',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: [
-    `
-      h3 {
-        margin: 0 0 10px;
-      }
-
-      pre {
-        background-color: #f5f5f5;
-        padding: 15px;
-      }
-    `,
-  ],
+  styleUrls: ['./agenda.component.less'],
   templateUrl: './agenda.component.html',
 })
 export class AgendaComponent {
@@ -113,9 +102,9 @@ export class AgendaComponent {
   constructor() {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (moment(date).isSame(this.viewDate, 'm')) {
+    if (moment(date).isSame(this.viewDate, 'month')) {
       if (
-        (moment(date).isSame(this.viewDate, 'd') && this.activeDayIsOpen === true) ||
+        (moment(date).isSame(this.viewDate, 'day') && this.activeDayIsOpen === true) ||
         events.length === 0
       ) {
         this.activeDayIsOpen = false;

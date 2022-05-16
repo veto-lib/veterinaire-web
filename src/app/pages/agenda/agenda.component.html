@@ -1,64 +1,64 @@
-<div class="row text-center">
-  <div class="col-md-4">
-    <div class="btn-group">
-      <div
-        class="btn btn-primary"
+<div>
+  <div>
+    <div>
+      <button
         mwlCalendarPreviousView
+        mat-stroked-button
         [view]="view"
         [(viewDate)]="viewDate"
         (viewDateChange)="closeOpenMonthViewDay()"
       >
         Previous
-      </div>
-      <div
-        class="btn btn-outline-secondary"
+      </button>
+      <button
+        mat-stroked-button
         mwlCalendarToday
         [(viewDate)]="viewDate"
       >
         Today
-      </div>
-      <div
-        class="btn btn-primary"
+      </button>
+      <button
+        mat-stroked-button
         mwlCalendarNextView
         [view]="view"
         [(viewDate)]="viewDate"
         (viewDateChange)="closeOpenMonthViewDay()"
       >
         Next
-      </div>
+      </button>
     </div>
   </div>
-  <div class="col-md-4">
-    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+  <div>
+    <h3>{{ viewDate | calendarDate: view + "ViewTitle":"en" }}</h3>
   </div>
-  <div class="col-md-4">
-    <div class="btn-group">
-      <div
-        class="btn btn-primary"
+  <div>
+    <div>
+      <button
+        mat-stroked-button
         (click)="setView(CalendarView.Month)"
         [class.active]="view === CalendarView.Month"
       >
         Month
-      </div>
-      <div
-        class="btn btn-primary"
+      </button>
+      <button
+        mat-stroked-button
         (click)="setView(CalendarView.Week)"
         [class.active]="view === CalendarView.Week"
       >
         Week
-      </div>
-      <div
-        class="btn btn-primary"
+      </button>
+      <button
+        mat-stroked-button
         (click)="setView(CalendarView.Day)"
         [class.active]="view === CalendarView.Day"
       >
         Day
-      </div>
+      </button>
     </div>
   </div>
 </div>
 <br />
-<div [ngSwitch]="view">
+<div [ngSwitch]="view" class="app-agenda__agenda-container">
   <mwl-calendar-month-view
     *ngSwitchCase="CalendarView.Month"
     [viewDate]="viewDate"
