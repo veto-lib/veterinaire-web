@@ -3,7 +3,6 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Subject } from 'rxjs';
 import {
   CalendarEvent,
-  CalendarEventAction,
   CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
@@ -36,29 +35,12 @@ export class AgendaComponent {
     this.activeDayIsOpen = false;
   }
 
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-      a11yLabel: 'Edit',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-      },
-    },
-    {
-      label: '<i class="fas fa-fw fa-trash-alt"></i>',
-      a11yLabel: 'Delete',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter((iEvent) => iEvent !== event);
-      },
-    },
-  ];
-
   events: CalendarEvent[] = [
     {
       start: moment().subtract(1, 'd').toDate(),
       end: moment().add(1, 'd').toDate(),
       title: 'A 3 day event',
       color: colors.red,
-      actions: this.actions,
       allDay: true,
       resizable: {
         beforeStart: true,
@@ -71,7 +53,6 @@ export class AgendaComponent {
       end: moment().add(4, 'h').toDate(),
       title: 'A draggable and resizable event',
       color: colors.red,
-      actions: this.actions,
       resizable: {
         beforeStart: true,
         afterEnd: true,
@@ -123,6 +104,10 @@ export class AgendaComponent {
         },
       },
     ];
+  }
+
+  handleEvent(event: unknown) {
+    console.log(event);
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {

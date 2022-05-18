@@ -1,3 +1,5 @@
+<h1>Mon Agenda</h1>
+
 <div class="app-agenda__agenda-heading">
   <div class="app-agenda__agenda-heading-navigation">
     <button mat-stroked-button mwlCalendarToday [(viewDate)]="viewDate">
@@ -47,6 +49,7 @@
     [activeDayIsOpen]="activeDayIsOpen"
     (dayClicked)="dayClicked($event.day)"
     (eventTimesChanged)="eventTimesChanged($event)"
+    (eventClicked)="handleEvent($event.event)"
   >
   </mwl-calendar-month-view>
   <mwl-calendar-week-view
@@ -55,6 +58,7 @@
     [events]="events"
     [refresh]="refresh"
     (eventTimesChanged)="eventTimesChanged($event)"
+    (eventClicked)="handleEvent($event.event)"
   >
   </mwl-calendar-week-view>
   <mwl-calendar-day-view
@@ -63,6 +67,7 @@
     [events]="events"
     [refresh]="refresh"
     (eventTimesChanged)="eventTimesChanged($event)"
+    (eventClicked)="handleEvent($event.event)"
   >
   </mwl-calendar-day-view>
 </div>
