@@ -1,9 +1,4 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  ViewChild,
-  TemplateRef,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { Subject } from 'rxjs';
 import {
@@ -19,14 +14,6 @@ const colors: any = {
     primary: '#ad2121',
     secondary: '#FAE3E3',
   },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF',
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA',
-  },
 };
 
 @Component({
@@ -36,25 +23,24 @@ const colors: any = {
   templateUrl: './agenda.component.html',
 })
 export class AgendaComponent {
-  @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
-
+  refresh = new Subject<void>();
   view: CalendarView = CalendarView.Month;
-
   CalendarView = CalendarView;
-
   viewDate: Date = new Date();
+  setView(view: CalendarView) {
+    this.view = view;
+  }
 
-  modalData: {
-    action: string;
-    event: CalendarEvent;
-  };
+  activeDayIsOpen: boolean = true;
+  closeOpenMonthViewDay() {
+    this.activeDayIsOpen = false;
+  }
 
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fas fa-fw fa-pencil-alt"></i>',
       a11yLabel: 'Edit',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
       },
     },
     {
@@ -62,12 +48,9 @@ export class AgendaComponent {
       a11yLabel: 'Delete',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter((iEvent) => iEvent !== event);
-        this.handleEvent('Deleted', event);
       },
     },
   ];
-
-  refresh = new Subject<void>();
 
   events: CalendarEvent[] = [
     {
@@ -87,7 +70,7 @@ export class AgendaComponent {
       start: moment().add(2, 'h').toDate(),
       end: moment().add(4, 'h').toDate(),
       title: 'A draggable and resizable event',
-      color: colors.yellow,
+      color: colors.red,
       actions: this.actions,
       resizable: {
         beforeStart: true,
@@ -97,20 +80,13 @@ export class AgendaComponent {
     },
   ];
 
-  activeDayIsOpen: boolean = true;
-
-  constructor() {}
-
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    this.activeDayIsOpen = !(
+      (moment(date).isSame(this.viewDate, 'day') &&
+        this.activeDayIsOpen === true) ||
+      events.length === 0
+    );
     if (moment(date).isSame(this.viewDate, 'month')) {
-      if (
-        (moment(date).isSame(this.viewDate, 'day') && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-      }
       this.viewDate = date;
     }
   }
@@ -130,12 +106,6 @@ export class AgendaComponent {
       }
       return iEvent;
     });
-    this.handleEvent('Dropped or resized', event);
-  }
-
-  handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    // this.modal.open(this.modalContent, { size: 'lg' });
   }
 
   addEvent(): void {
@@ -144,7 +114,7 @@ export class AgendaComponent {
       {
         title: 'New event',
         start: moment().toDate(),
-        end:  moment().add(2, 'h').toDate(),
+        end: moment().add(2, 'h').toDate(),
         color: colors.red,
         draggable: true,
         resizable: {
@@ -157,13 +127,5 @@ export class AgendaComponent {
 
   deleteEvent(eventToDelete: CalendarEvent) {
     this.events = this.events.filter((event) => event !== eventToDelete);
-  }
-
-  setView(view: CalendarView) {
-    this.view = view;
-  }
-
-  closeOpenMonthViewDay() {
-    this.activeDayIsOpen = false;
   }
 }
