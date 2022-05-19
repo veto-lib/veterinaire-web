@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Subject } from 'rxjs';
 import {
@@ -7,6 +8,7 @@ import {
   CalendarView,
 } from 'angular-calendar';
 import * as moment from 'moment';
+import { EventModalComponent } from 'src/app/components/event-modal/event-modal.component';
 
 const colors: any = {
   red: {
@@ -61,6 +63,8 @@ export class AgendaComponent {
     },
   ];
 
+  constructor(private modal: MatDialog) {}
+
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     this.activeDayIsOpen = !(
       (moment(date).isSame(this.viewDate, 'day') &&
@@ -108,6 +112,7 @@ export class AgendaComponent {
 
   handleEvent(event: unknown) {
     console.log(event);
+    this.modal.open(EventModalComponent);
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {

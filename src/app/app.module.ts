@@ -17,6 +17,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { AgendaComponent } from './pages/agenda/agenda.component';
+import { EventModalComponent } from './components/event-modal/event-modal.component';
 
 export const momentAdapterFactory = () => {
   return adapterFactory(moment);
@@ -29,7 +30,8 @@ export const momentAdapterFactory = () => {
     SidenavComponent,
     HomeComponent,
     PatientsComponent,
-    AgendaComponent
+    AgendaComponent,
+    EventModalComponent
   ],
   imports: [
     BrowserModule,
