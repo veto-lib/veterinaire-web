@@ -1,12 +1,38 @@
+import { CalendarEvent } from 'angular-calendar';
+
 import { IPatient } from './patient';
+
+const CALENDAR_EVENT_COLOR = {
+  primary: '#AD2121',
+  secondary: '#FAE3E3',
+};
 
 export interface IEvent {
   id: number;
   title: string;
   start: Date;
   end: Date;
-  allDay: boolean;
   patient: IPatient;
   notes: string;
   callId: string;
+}
+
+export class Event {
+
+  static toCalendarEvent(events: IEvent[]): CalendarEvent<IEvent>[] {
+    return events.map(e => ({
+      start: e.start,
+      end: e.end,
+      title: e.title,
+      color: CALENDAR_EVENT_COLOR,
+      allDay: false,
+      resizable: {
+        beforeStart: false,
+        afterEnd: false,
+      },
+      draggable: false,
+      meta: e
+    }));
+  }
+
 }
