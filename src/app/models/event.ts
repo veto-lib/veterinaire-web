@@ -1,12 +1,12 @@
-import { Patient } from './patient';
+import { IPatient } from './patient';
 
-export interface Event {
+export interface IEvent {
   id: number;
   title: string;
   start: Date;
   end: Date;
   allDay: boolean;
-  patient: Patient;
+  patient: IPatient;
   notes: string;
   callId: string;
 }

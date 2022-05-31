@@ -10,7 +10,7 @@ import {
 import * as moment from 'moment';
 
 import { EventModalComponent } from 'src/app/components/event-modal/event-modal.component';
-import { Event } from 'src/app/models/event';
+import { IEvent } from 'src/app/models/event';
 
 const RED = {
   primary: '#ad2121',
@@ -37,7 +37,7 @@ export class AgendaComponent {
     this.activeDayIsOpen = false;
   }
 
-  events: CalendarEvent<Event>[] = [
+  events: CalendarEvent<IEvent>[] = [
     {
       start: moment().subtract(1, 'd').toDate(),
       end: moment().add(1, 'd').toDate(),

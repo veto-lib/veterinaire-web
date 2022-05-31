@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { Patient } from '../models/patient';
+import { IPatient } from '../models/patient';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ import { Patient } from '../models/patient';
 export class PatientsService {
   constructor() {}
 
-  getMyPatients(): Observable<Patient[]> {
+  getMyPatients(): Observable<IPatient[]> {
     return of([
       {
         firstName: 'Hugo',

@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 
 import { PatientsService } from 'src/app/services/patients.service';
 
-import { Patient } from 'src/app/models/patient';
+import { IPatient } from 'src/app/models/patient';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -16,7 +16,7 @@ export class PatientsComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSource: MatTableDataSource<Patient> = new MatTableDataSource([] as Patient[]);
+  dataSource: MatTableDataSource<IPatient> = new MatTableDataSource([] as IPatient[]);
 
   displayedColumns: string[] = [
     'firstName',

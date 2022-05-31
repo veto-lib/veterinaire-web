@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { Event } from 'src/app/models/event';
+import { IEvent } from 'src/app/models/event';
 
 @Component({
   templateUrl: './event-modal.component.html',
@@ -9,7 +9,7 @@ import { Event } from 'src/app/models/event';
 })
 export class EventModalComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public event: Event) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public event: IEvent) {}
 
   ngOnInit(): void {}
 
