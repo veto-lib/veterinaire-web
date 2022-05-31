@@ -8,13 +8,13 @@ import {
   CalendarView,
 } from 'angular-calendar';
 import * as moment from 'moment';
-import { EventModalComponent } from 'src/app/components/event-modal/event-modal.component';
 
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3',
-  },
+import { EventModalComponent } from 'src/app/components/event-modal/event-modal.component';
+import { Event } from 'src/app/models/event';
+
+const RED = {
+  primary: '#ad2121',
+  secondary: '#FAE3E3',
 };
 
 @Component({
@@ -37,29 +37,61 @@ export class AgendaComponent {
     this.activeDayIsOpen = false;
   }
 
-  events: CalendarEvent[] = [
+  events: CalendarEvent<Event>[] = [
     {
       start: moment().subtract(1, 'd').toDate(),
       end: moment().add(1, 'd').toDate(),
       title: 'A 3 day event',
-      color: colors.red,
+      color: RED,
       allDay: true,
       resizable: {
-        beforeStart: true,
-        afterEnd: true,
+        beforeStart: false,
+        afterEnd: false,
       },
-      draggable: true,
+      draggable: false,
+      meta: {
+        id: 1,
+        title: 'A 3 day event',
+        start: moment().subtract(1, 'd').toDate(),
+        end: moment().add(1, 'd').toDate(),
+        allDay: true,
+        notes: 'some notes about the meeting...',
+        callId: 'test',
+        patient: {
+          firstName: 'Hugo',
+          lastName: 'Hall',
+          birthDate: '02/01/1992',
+          gender: 'F',
+          favorite: false,
+        },
+      },
     },
     {
       start: moment().add(2, 'h').toDate(),
       end: moment().add(4, 'h').toDate(),
       title: 'A draggable and resizable event',
-      color: colors.red,
+      color: RED,
       resizable: {
-        beforeStart: true,
-        afterEnd: true,
+        beforeStart: false,
+        afterEnd: false,
       },
-      draggable: true,
+      draggable: false,
+      meta: {
+        id: 2,
+        title: 'A draggable and resizable event',
+        start: moment().add(2, 'h').toDate(),
+        end: moment().add(4, 'h').toDate(),
+        allDay: false,
+        notes: 'some notes about the meeting...',
+        callId: 'test',
+        patient: {
+          firstName: 'Harvey',
+          lastName: 'Hughes',
+          birthDate: '14/04/1993',
+          gender: 'M',
+          favorite: true,
+        },
+      },
     },
   ];
 
@@ -100,19 +132,18 @@ export class AgendaComponent {
         title: 'New event',
         start: moment().toDate(),
         end: moment().add(2, 'h').toDate(),
-        color: colors.red,
-        draggable: true,
+        color: RED,
+        draggable: false,
         resizable: {
-          beforeStart: true,
-          afterEnd: true,
+          beforeStart: false,
+          afterEnd: false,
         },
       },
     ];
   }
 
-  handleEvent(event: unknown) {
-    console.log(event);
-    this.modal.open(EventModalComponent);
+  handleEvent(event: CalendarEvent<Event>) {
+    this.modal.open(EventModalComponent, { data: event.meta });
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {
