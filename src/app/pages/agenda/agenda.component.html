@@ -8,9 +8,8 @@
     <button
       mwlCalendarPreviousView
       mat-icon-button
-      [view]="view"
+      [view]="CalendarView.Week"
       [(viewDate)]="viewDate"
-      (viewDateChange)="closeOpenMonthViewDay()"
     >
       <mat-icon>chevron_left</mat-icon>
     </button>
@@ -18,56 +17,23 @@
     <button
       mat-icon-button
       mwlCalendarNextView
-      [view]="view"
+      [view]="CalendarView.Week"
       [(viewDate)]="viewDate"
-      (viewDateChange)="closeOpenMonthViewDay()"
     >
       <mat-icon>chevron_right</mat-icon>
     </button>
   </div>
   <div class="app-agenda__agenda-heading-date">
-    <p>{{ viewDate | calendarDate: view + "ViewTitle":"fr" }}</p>
-  </div>
-  <div class="app-agenda__agenda-heading-periodicity">
-    <mat-form-field appearance="fill">
-      <mat-label>Périodicité</mat-label>
-      <mat-select (selectionChange)="setView($event.value)" [value]="view">
-        <mat-option [value]="CalendarView.Month"> Mois </mat-option>
-        <mat-option [value]="CalendarView.Week"> Semaine </mat-option>
-        <mat-option [value]="CalendarView.Day"> Jour </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <p>{{ viewDate | calendarDate: CalendarView.Week + "ViewTitle":"fr" }}</p>
   </div>
 </div>
 
-<div [ngSwitch]="view" class="app-agenda__agenda-container">
-  <mwl-calendar-month-view
-    *ngSwitchCase="CalendarView.Month"
-    [viewDate]="viewDate"
-    [events]="events"
-    [refresh]="refresh"
-    [activeDayIsOpen]="activeDayIsOpen"
-    (dayClicked)="dayClicked($event.day)"
-    (eventTimesChanged)="eventTimesChanged($event)"
-    (eventClicked)="handleEvent($event.event)"
-  >
-  </mwl-calendar-month-view>
+<div class="app-agenda__agenda-container">
   <mwl-calendar-week-view
-    *ngSwitchCase="CalendarView.Week"
     [viewDate]="viewDate"
     [events]="events"
     [refresh]="refresh"
-    (eventTimesChanged)="eventTimesChanged($event)"
     (eventClicked)="handleEvent($event.event)"
   >
   </mwl-calendar-week-view>
-  <mwl-calendar-day-view
-    *ngSwitchCase="CalendarView.Day"
-    [viewDate]="viewDate"
-    [events]="events"
-    [refresh]="refresh"
-    (eventTimesChanged)="eventTimesChanged($event)"
-    (eventClicked)="handleEvent($event.event)"
-  >
-  </mwl-calendar-day-view>
 </div>

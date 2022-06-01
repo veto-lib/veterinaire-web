@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import {
   CalendarEvent,
-  CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
 import * as moment from 'moment';
@@ -21,17 +20,8 @@ import { CalendarService } from 'src/app/services/calendar.service';
 })
 export class AgendaComponent implements OnInit {
   refresh = new Subject<void>();
-  view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
-  setView(view: CalendarView) {
-    this.view = view;
-  }
-
-  activeDayIsOpen: boolean = true;
-  closeOpenMonthViewDay() {
-    this.activeDayIsOpen = false;
-  }
 
   events: CalendarEvent<IEvent>[] = [];
 
@@ -43,34 +33,6 @@ export class AgendaComponent implements OnInit {
   ngOnInit(): void {
     this.calendarService.getMyEvents().subscribe((events) => {
       this.events = events;
-    });
-  }
-
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    this.activeDayIsOpen = !(
-      (moment(date).isSame(this.viewDate, 'day') &&
-        this.activeDayIsOpen === true) ||
-      events.length === 0
-    );
-    if (moment(date).isSame(this.viewDate, 'month')) {
-      this.viewDate = date;
-    }
-  }
-
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd,
-  }: CalendarEventTimesChangedEvent): void {
-    this.events = this.events.map((iEvent) => {
-      if (iEvent === event) {
-        return {
-          ...event,
-          start: newStart,
-          end: newEnd,
-        };
-      }
-      return iEvent;
     });
   }
 
@@ -110,7 +72,6 @@ export class AgendaComponent implements OnInit {
       .deleteEvent(eventToDelete.id)
       .then((events) => {
         this.events = events;
-        this.activeDayIsOpen = false;
         this.refresh.next();
       });
   }

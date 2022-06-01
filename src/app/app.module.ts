@@ -1,4 +1,4 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { Injectable, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -6,7 +6,13 @@ import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import localeFr from '@angular/common/locales/fr';
 
-import { DateAdapter, CalendarModule } from 'angular-calendar';
+import {
+  DateAdapter,
+  CalendarModule,
+  CalendarDateFormatter,
+  CalendarNativeDateFormatter,
+  DateFormatterParams,
+} from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/moment';
 import * as moment from 'moment';
 
@@ -27,6 +33,16 @@ export const momentAdapterFactory = () => {
   return adapterFactory(moment);
 };
 
+@Injectable()
+class CustomDateFormatter extends CalendarNativeDateFormatter {
+  public weekViewHour({ date, locale }: DateFormatterParams): string {
+    return new Intl.DateTimeFormat('pt-BR', {
+      hour: 'numeric',
+      minute: 'numeric',
+    }).format(date);
+  }
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +51,7 @@ export const momentAdapterFactory = () => {
     HomeComponent,
     PatientsComponent,
     AgendaComponent,
-    EventModalComponent
+    EventModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,11 +61,17 @@ export const momentAdapterFactory = () => {
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: momentAdapterFactory })
+    CalendarModule.forRoot(
+      { provide: DateAdapter, useFactory: momentAdapterFactory },
+      {
+        dateFormatter: {
+          provide: CalendarDateFormatter,
+          useClass: CustomDateFormatter,
+        },
+      }
+    ),
   ],
-  providers: [
-    { provide: LOCALE_ID, useValue: 'fr-FR' }
-  ],
-  bootstrap: [AppComponent]
+  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
