@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
-import { mergeMap, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, tap, switchMap } from 'rxjs/operators';
 import { CalendarEvent } from 'angular-calendar';
 
 import { Event, IEvent } from '../models/event';
@@ -21,15 +21,14 @@ export class CalendarService {
 
   createEvent(event: IEvent): Observable<CalendarEvent<IEvent>[]> {
     return this.eventService.createEvent(event).pipe(
-      mergeMap(() => this.eventService.getMyEvents()),
+      switchMap(() => this.eventService.getMyEvents()),
       map(events => Event.toCalendarEvent(events))
     );
   }
 
-  deleteEvent(eventId: IEvent['id']): Observable<CalendarEvent<IEvent>[]> {
-    return this.eventService.deleteEvent(eventId).pipe(
-      mergeMap(() => this.eventService.getMyEvents()),
-      map(events => Event.toCalendarEvent(events))
-    );
+  deleteEvent(eventId: IEvent['id']): Promise<CalendarEvent<IEvent>[]> {
+    return this.eventService.deleteEvent(eventId).toPromise()
+      .then(() => this.eventService.getMyEvents().toPromise())
+      .then(events => Event.toCalendarEvent(events));
   }
 }

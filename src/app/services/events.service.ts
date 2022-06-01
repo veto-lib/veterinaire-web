@@ -54,8 +54,7 @@ export class EventsService {
   }
 
   deleteEvent(eventId: IEvent['id']): Observable<void> {
-    this.events = this.events.filter(e => e.id !== eventId);
+    this.events = this.events.filter((e) => e.id !== eventId);
     return of();
   }
-
 }

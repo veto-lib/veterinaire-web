@@ -35,10 +35,13 @@ export class AgendaComponent implements OnInit {
 
   events: CalendarEvent<IEvent>[] = [];
 
-  constructor(private modal: MatDialog, private calendarService: CalendarService) {}
+  constructor(
+    private modal: MatDialog,
+    private calendarService: CalendarService
+  ) {}
 
   ngOnInit(): void {
-    this.calendarService.getMyEvents().subscribe(events => {
+    this.calendarService.getMyEvents().subscribe((events) => {
       this.events = events;
     });
   }
@@ -72,27 +75,43 @@ export class AgendaComponent implements OnInit {
   }
 
   addEvent(): void {
-    this.calendarService.createEvent({
-      id: 3,
-      title: 'new event',
-      start: moment().add(6, 'h').toDate(),
-      end: moment().add(8, 'h').toDate(),
-      notes: 'some notes about the meeting...',
-      callId: 'test',
-      patient: {
-        firstName: 'Harvey',
-        lastName: 'Hughes',
-        birthDate: '14/04/1993',
-        gender: 'M',
-        favorite: true,
-      },
-    }).subscribe(events => this.events = events);
+    this.calendarService
+      .createEvent({
+        id: 3,
+        title: 'new event',
+        start: moment().add(6, 'h').toDate(),
+        end: moment().add(8, 'h').toDate(),
+        notes: 'some notes about the meeting...',
+        callId: 'test',
+        patient: {
+          firstName: 'Harvey',
+          lastName: 'Hughes',
+          birthDate: '14/04/1993',
+          gender: 'M',
+          favorite: true,
+        },
+      })
+      .subscribe((events) => (this.events = events));
   }
 
-  handleEvent(event: CalendarEvent<Event>) {
-    this.modal.open(EventModalComponent, { data: event.meta });
+  handleEvent(event: CalendarEvent<IEvent>) {
+    this.modal
+      .open(EventModalComponent, { data: event.meta })
+      .afterClosed()
+      .subscribe((shouldDelete) => {
+        if (shouldDelete) {
+          this.deleteEvent(event.meta as IEvent);
+        }
+      });
   }
 
-  deleteEvent(eventToDelete: CalendarEvent) {
+  deleteEvent(eventToDelete: IEvent) {
+    this.calendarService
+      .deleteEvent(eventToDelete.id)
+      .then((events) => {
+        this.events = events;
+        this.activeDayIsOpen = false;
+        this.refresh.next();
+      });
   }
 }
