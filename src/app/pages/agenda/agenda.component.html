@@ -1,1 +1,40 @@
-<p>agenda works!</p>
+<h1>Mon Agenda</h1>
+
+<div class="app-agenda__agenda-heading">
+  <div class="app-agenda__agenda-heading-navigation">
+    <button mat-stroked-button mwlCalendarToday [(viewDate)]="viewDate">
+      Aujourd'hui
+    </button>
+    <button
+      mwlCalendarPreviousView
+      mat-icon-button
+      [view]="CalendarView.Week"
+      [(viewDate)]="viewDate"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      mwlCalendarNextView
+      [view]="CalendarView.Week"
+      [(viewDate)]="viewDate"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+  <div class="app-agenda__agenda-heading-date">
+    <p>{{ viewDate | calendarDate: CalendarView.Week + "ViewTitle":"fr" }}</p>
+  </div>
+</div>
+
+<div class="app-agenda__agenda-container">
+  <mwl-calendar-week-view
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    (eventClicked)="eventClicked($event.event)"
+    (hourSegmentClicked)="hourClicked($event.date)"
+  >
+  </mwl-calendar-week-view>
+</div>

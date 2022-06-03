@@ -1,4 +1,5 @@
-export interface Patient {
+export interface IPatient {
+  email: string;
   firstName: string;
   lastName: string;
   birthDate: string;

@@ -1,0 +1,33 @@
+.app-event-modal__content {
+  width: 600px;
+  height: 800px;
+
+  &-title, &-dates, &-patients, &-notes {
+    display: flex;
+    & > * {
+      flex-grow: 1;
+    }
+  }
+
+  &-dates {
+    justify-content: space-between;
+
+    & > * {
+      margin: 1rem .5rem 0;
+    }
+
+    &-title {
+      margin: 0 0 4px;
+    }
+  }
+
+  &-patients {
+    margin-top: 1rem;
+  }
+
+  &-notes {
+    textarea {
+      resize: none;
+    }
+  }
+}
