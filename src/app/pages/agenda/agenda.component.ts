@@ -9,6 +9,8 @@ import {
 import * as moment from 'moment';
 
 import { EventModalComponent } from 'src/app/components/event-modal/event-modal.component';
+import { CreateEventModalComponent } from 'src/app/components/create-event-modal/create-event-modal.component';
+
 import { IEvent } from 'src/app/models/event';
 import { CalendarService } from 'src/app/services/calendar.service';
 
@@ -56,7 +58,7 @@ export class AgendaComponent implements OnInit {
       .subscribe((events) => (this.events = events));
   }
 
-  handleEvent(event: CalendarEvent<IEvent>) {
+  eventClicked(event: CalendarEvent<IEvent>) {
     this.modal
       .open(EventModalComponent, { data: event.meta })
       .afterClosed()
@@ -65,6 +67,10 @@ export class AgendaComponent implements OnInit {
           this.deleteEvent(event.meta as IEvent);
         }
       });
+  }
+
+  hourClicked(date: Date) {
+    this.modal.open(CreateEventModalComponent, { data: date });
   }
 
   deleteEvent(eventToDelete: IEvent) {

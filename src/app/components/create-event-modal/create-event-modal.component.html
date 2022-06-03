@@ -1,0 +1,59 @@
+<h2 mat-dialog-title>Créer évènement</h2>
+<mat-dialog-content class="app-event-modal__content">
+  <form [formGroup]="form">
+    <div class="app-event-modal__content-title">
+      <mat-form-field appearance="fill">
+        <mat-label>Titre</mat-label>
+        <input matInput formControlName="title" />
+      </mat-form-field>
+    </div>
+    <h3 class="app-event-modal__content-dates-title">Réunion</h3>
+    <mat-divider></mat-divider>
+    <div class="app-event-modal__content-dates">
+      <mat-form-field appearance="fill">
+        <mat-label>Début</mat-label>
+        <input
+          matInput
+          [ngxMatDatetimePicker]="start"
+          formControlName="start"
+        />
+        <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #start></ngx-mat-datetime-picker>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Fin</mat-label>
+        <input matInput [ngxMatDatetimePicker]="end" formControlName="end" />
+        <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #end></ngx-mat-datetime-picker>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="app-event-modal__content-patients">
+      <mat-form-field appearance="fill">
+        <mat-label>Patients</mat-label>
+        <mat-select formControlName="patient">
+          <mat-option [value]="'toto'">toto</mat-option>
+          <mat-option [value]="'titi'">titi</mat-option>
+          <mat-option [value]="'ttataoto'">tata</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="app-event-modal__content-notes">
+      <mat-form-field appearance="fill">
+        <mat-label>Notes</mat-label>
+        <textarea matInput formControlName="notes" rows="15"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close cdkFocusInitial>Fermer</button>
+  <button
+    mat-stroked-button
+    [mat-dialog-close]="true"
+    [color]="'primary'"
+    [disabled]="!form.valid"
+  >
+    Créer
+  </button>
+</mat-dialog-actions>

@@ -26,6 +26,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { AgendaComponent } from './pages/agenda/agenda.component';
 import { EventModalComponent } from './components/event-modal/event-modal.component';
+import { CreateEventModalComponent } from './components/create-event-modal/create-event-modal.component';
 
 registerLocaleData(localeFr);
 
@@ -36,7 +37,7 @@ export const momentAdapterFactory = () => {
 @Injectable()
 class CustomDateFormatter extends CalendarNativeDateFormatter {
   public weekViewHour({ date, locale }: DateFormatterParams): string {
-    return new Intl.DateTimeFormat('pt-BR', {
+    return new Intl.DateTimeFormat('fr', {
       hour: 'numeric',
       minute: 'numeric',
     }).format(date);
@@ -52,6 +53,7 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     PatientsComponent,
     AgendaComponent,
     EventModalComponent,
+    CreateEventModalComponent,
   ],
   imports: [
     BrowserModule,

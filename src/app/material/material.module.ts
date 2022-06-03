@@ -13,6 +13,10 @@ import { MatTableModule } from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 
 @NgModule({
   declarations: [],
@@ -25,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatSidenavModule,
     MatFormFieldModule,
+    MatInputModule,
     MatSelectModule,
     MatListModule,
     MatTooltipModule,
@@ -32,7 +37,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule,
     MatSortModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
   ]
 })
 export class MaterialModule { }
