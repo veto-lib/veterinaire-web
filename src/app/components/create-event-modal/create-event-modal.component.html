@@ -50,8 +50,8 @@
   <button mat-button mat-dialog-close cdkFocusInitial>Fermer</button>
   <button
     mat-stroked-button
-    [mat-dialog-close]="true"
-    [color]="'primary'"
+    [mat-dialog-close]="form.value"
+    color="primary"
     [disabled]="!form.valid"
   >
     Créer

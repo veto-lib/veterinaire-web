@@ -6,12 +6,11 @@ import {
   CalendarEvent,
   CalendarView,
 } from 'angular-calendar';
-import * as moment from 'moment';
 
 import { EventModalComponent } from 'src/app/components/event-modal/event-modal.component';
 import { CreateEventModalComponent } from 'src/app/components/create-event-modal/create-event-modal.component';
 
-import { IEvent } from 'src/app/models/event';
+import { CreateEvent, IEvent } from 'src/app/models/event';
 import { CalendarService } from 'src/app/services/calendar.service';
 
 @Component({
@@ -38,26 +37,6 @@ export class AgendaComponent implements OnInit {
     });
   }
 
-  addEvent(): void {
-    this.calendarService
-      .createEvent({
-        id: 3,
-        title: 'new event',
-        start: moment().add(6, 'h').toDate(),
-        end: moment().add(8, 'h').toDate(),
-        notes: 'some notes about the meeting...',
-        callId: 'test',
-        patient: {
-          firstName: 'Harvey',
-          lastName: 'Hughes',
-          birthDate: '14/04/1993',
-          gender: 'M',
-          favorite: true,
-        },
-      })
-      .subscribe((events) => (this.events = events));
-  }
-
   eventClicked(event: CalendarEvent<IEvent>) {
     this.modal
       .open(EventModalComponent, { data: event.meta })
@@ -70,7 +49,13 @@ export class AgendaComponent implements OnInit {
   }
 
   hourClicked(date: Date) {
-    this.modal.open(CreateEventModalComponent, { data: date });
+    this.modal.open(CreateEventModalComponent, { data: date })
+      .afterClosed()
+      .subscribe((event: CreateEvent | undefined) => {
+        if (!!event) {
+          this.addEvent(event);
+        }
+      });
   }
 
   deleteEvent(eventToDelete: IEvent) {
@@ -81,4 +66,14 @@ export class AgendaComponent implements OnInit {
         this.refresh.next();
       });
   }
+
+  addEvent(event: CreateEvent): void {
+    this.calendarService
+      .createEvent(event)
+      .then((events) => {
+        this.events = events;
+        this.refresh.next();
+      });
+  }
+
 }

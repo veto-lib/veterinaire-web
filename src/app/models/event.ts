@@ -8,13 +8,21 @@ const CALENDAR_EVENT_COLOR = {
 };
 
 export interface IEvent {
-  id: number;
+  id: string;
   title: string;
   start: Date;
   end: Date;
   patient: IPatient;
   notes: string;
   callId: string;
+}
+
+export interface CreateEvent {
+  title: string;
+  start: Date;
+  end: Date;
+  patient: string;
+  notes: string;
 }
 
 export class Event {
