@@ -18,7 +18,7 @@
           formControlName="start"
         />
         <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
-        <ngx-mat-datetime-picker #start></ngx-mat-datetime-picker>
+        <ngx-mat-datetime-picker #start [showSeconds]="false" [stepMinute]="30"></ngx-mat-datetime-picker>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Fin</mat-label>
