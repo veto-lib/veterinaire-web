@@ -27,6 +27,7 @@ import { PatientsComponent } from './pages/patients/patients.component';
 import { AgendaComponent } from './pages/agenda/agenda.component';
 import { EventModalComponent } from './components/event-modal/event-modal.component';
 import { CreateEventModalComponent } from './components/create-event-modal/create-event-modal.component';
+import { InformationsComponent } from './pages/informations/informations.component';
 
 registerLocaleData(localeFr);
 
@@ -54,6 +55,7 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     AgendaComponent,
     EventModalComponent,
     CreateEventModalComponent,
+    InformationsComponent,
   ],
   imports: [
     BrowserModule,
