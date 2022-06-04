@@ -8,7 +8,6 @@ import { IPatient } from 'src/app/models/patient';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-patients',
   templateUrl: './patients.component.html',
   styleUrls: ['./patients.component.less'],
 })

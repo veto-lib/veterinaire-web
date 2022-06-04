@@ -9,6 +9,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import * as moment from 'moment';
 
+import { IPatient } from 'src/app/models/patient';
+import { PatientsService } from 'src/app/services/patients.service';
+
 @Component({
   templateUrl: './create-event-modal.component.html',
   styleUrls: ['./create-event-modal.component.less'],
@@ -16,8 +19,11 @@ import * as moment from 'moment';
 export class CreateEventModalComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public date: Date,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private patientsService: PatientsService
   ) {}
+
+  patients: IPatient[] = [];
 
   form = this.fb.group(
     {
@@ -33,6 +39,9 @@ export class CreateEventModalComponent implements OnInit {
   );
 
   ngOnInit() {
+    this.patientsService
+      .getMyPatients()
+      .subscribe((patients) => (this.patients = patients));
     this.form.controls['start'].setValue(this.date);
     this.form.controls['end'].setValue(moment(this.date).add(1, 'h').toDate());
   }

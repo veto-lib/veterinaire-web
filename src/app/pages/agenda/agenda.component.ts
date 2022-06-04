@@ -14,8 +14,6 @@ import { CreateEvent, IEvent } from 'src/app/models/event';
 import { CalendarService } from 'src/app/services/calendar.service';
 
 @Component({
-  selector: 'app-agenda',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./agenda.component.less'],
   templateUrl: './agenda.component.html',
 })

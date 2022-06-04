@@ -1,15 +1,15 @@
 <h2 mat-dialog-title>Créer évènement</h2>
-<mat-dialog-content class="app-event-modal__content">
+<mat-dialog-content class="app-create-event-modal__content">
   <form [formGroup]="form">
-    <div class="app-event-modal__content-title">
+    <div class="app-create-event-modal__content-title">
       <mat-form-field appearance="fill">
         <mat-label>Titre</mat-label>
         <input matInput formControlName="title" />
       </mat-form-field>
     </div>
-    <h3 class="app-event-modal__content-dates-title">Réunion</h3>
+    <h3 class="app-create-event-modal__content-dates-title">Réunion</h3>
     <mat-divider></mat-divider>
-    <div class="app-event-modal__content-dates">
+    <div class="app-create-event-modal__content-dates">
       <mat-form-field appearance="fill">
         <mat-label>Début</mat-label>
         <input
@@ -18,7 +18,11 @@
           formControlName="start"
         />
         <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
-        <ngx-mat-datetime-picker #start [showSeconds]="false" [stepMinute]="30"></ngx-mat-datetime-picker>
+        <ngx-mat-datetime-picker
+          #start
+          [showSeconds]="false"
+          [stepMinute]="30"
+        ></ngx-mat-datetime-picker>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Fin</mat-label>
@@ -28,17 +32,17 @@
       </mat-form-field>
     </div>
     <mat-divider></mat-divider>
-    <div class="app-event-modal__content-patients">
+    <div class="app-create-event-modal__content-patients">
       <mat-form-field appearance="fill">
         <mat-label>Patients</mat-label>
         <mat-select formControlName="patient">
-          <mat-option [value]="'toto'">toto</mat-option>
-          <mat-option [value]="'titi'">titi</mat-option>
-          <mat-option [value]="'ttataoto'">tata</mat-option>
+          <mat-option *ngFor="let patient of patients" [value]="patient.email"
+            >{{ patient.firstName }} {{ patient.lastName }}</mat-option
+          >
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="app-event-modal__content-notes">
+    <div class="app-create-event-modal__content-notes">
       <mat-form-field appearance="fill">
         <mat-label>Notes</mat-label>
         <textarea matInput formControlName="notes" rows="15"></textarea>
