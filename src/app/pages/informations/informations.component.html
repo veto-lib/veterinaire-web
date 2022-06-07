@@ -2,7 +2,7 @@
 
 <div class="app-informations__content">
   <form [formGroup]="form">
-    <div>
+    <div class="app-informations__content-names">
       <mat-form-field appearance="fill">
         <mat-label>Prénom</mat-label>
         <input matInput formControlName="firstName" />
@@ -12,17 +12,22 @@
         <input matInput formControlName="lastName" />
       </mat-form-field>
     </div>
-    <div>
+    <div class="app-informations__content-address">
       <mat-form-field appearance="fill">
         <mat-label>Adresse</mat-label>
         <input matInput formControlName="address" />
       </mat-form-field>
     </div>
-    <div>
+    <div class="app-informations__content-price">
       <mat-form-field appearance="fill">
         <mat-label>Prix moyen consultation</mat-label>
         <input matInput formControlName="price" />
       </mat-form-field>
     </div>
   </form>
+</div>
+<div class="app-informations__save">
+  <button mat-stroked-button color="primary" [disabled]="!form.valid">
+    Sauvegarder
+  </button>
 </div>

@@ -28,7 +28,11 @@
         <mat-label>Fin</mat-label>
         <input matInput [ngxMatDatetimePicker]="end" formControlName="end" />
         <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
-        <ngx-mat-datetime-picker #end></ngx-mat-datetime-picker>
+        <ngx-mat-datetime-picker
+          #end
+          [showSeconds]="false"
+          [stepMinute]="30"
+        ></ngx-mat-datetime-picker>
       </mat-form-field>
     </div>
     <mat-divider></mat-divider>
