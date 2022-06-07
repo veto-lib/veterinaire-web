@@ -7,12 +7,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { AgendaComponent } from './pages/agenda/agenda.component';
 import { InformationsComponent } from './pages/informations/informations.component';
+import { RecordComponent } from './pages/record/record.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'agenda', component: AgendaComponent, canActivate: [AuthGuard] },
   { path: 'patients', component: PatientsComponent, canActivate: [AuthGuard] },
   { path: 'informations', component: InformationsComponent, canActivate: [AuthGuard] },
+  { path: 'dossier', component: RecordComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/' }
 ];
 

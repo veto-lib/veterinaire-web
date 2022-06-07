@@ -23,6 +23,7 @@ export class PatientsComponent implements AfterViewInit {
     'birthDate',
     'gender',
     'favorite',
+    'medicalRecord'
   ];
 
   constructor(private service: PatientsService) {}
