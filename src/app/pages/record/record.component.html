@@ -1,1 +1,26 @@
-<p>record works!</p>
+<div class="app-records__user-card-wrapper">
+  <h1>Dossier Médical</h1>
+  <app-user-card></app-user-card>
+</div>
+<mat-list>
+  <div mat-subheader>Derniers rendez-vous</div>
+  <mat-list-item *ngFor="let meeting of meetings">
+    <mat-icon mat-list-icon>meeting_room</mat-icon>
+    <div mat-line>{{meeting.doctor}}</div>
+    <div mat-line> {{meeting.date | date}} </div>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <div mat-subheader>Notes des rendez-vous</div>
+  <mat-list-item *ngFor="let note of notes">
+    <mat-icon mat-list-icon>note</mat-icon>
+    <div mat-line>{{note.name}}</div>
+    <div mat-line> {{note.updated | date}} </div>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <div mat-subheader>Documents annexes</div>
+  <mat-list-item *ngFor="let document of documents">
+    <mat-icon mat-list-icon>summarize</mat-icon>
+    <div mat-line>{{document.name}}</div>
+    <div mat-line> {{document.updated | date}} </div>
+  </mat-list-item>
+</mat-list>

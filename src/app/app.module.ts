@@ -29,6 +29,7 @@ import { EventModalComponent } from './components/event-modal/event-modal.compon
 import { CreateEventModalComponent } from './components/create-event-modal/create-event-modal.component';
 import { InformationsComponent } from './pages/informations/informations.component';
 import { RecordComponent } from './pages/record/record.component';
+import { UserCardComponent } from './components/user-card/user-card.component';
 
 registerLocaleData(localeFr);
 
@@ -58,6 +59,7 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     CreateEventModalComponent,
     InformationsComponent,
     RecordComponent,
+    UserCardComponent,
   ],
   imports: [
     BrowserModule,
