@@ -39,7 +39,7 @@
   </form>
 </div>
 <div class="app-informations__save">
-  <button mat-stroked-button color="primary" [disabled]="!form.valid" (click)="save()">
+  <button mat-stroked-button color="primary" [disabled]="!form.valid || form.pristine" (click)="save()">
     Sauvegarder
   </button>
 </div>

@@ -29,6 +29,7 @@ export class InformationsComponent implements OnInit {
   }
 
   save() {
+    this.form.markAsPristine();
     this.informationService.updateInformation(this.form.value).subscribe();
   }
 }
