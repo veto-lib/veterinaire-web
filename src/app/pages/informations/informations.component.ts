@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { IInformation } from 'src/app/models/information';
 import { InformationsService } from 'src/app/services/informations.service';
 
 @Component({
@@ -16,8 +15,6 @@ export class InformationsComponent implements OnInit {
     price: ['', Validators.required],
   });
 
-  information: IInformation;
-
   constructor(
     private fb: FormBuilder,
     private informationService: InformationsService
@@ -26,7 +23,9 @@ export class InformationsComponent implements OnInit {
   ngOnInit(): void {
     this.informationService
       .getMyInformation()
-      .subscribe((information) => (this.information = information));
+      .subscribe((information) => {
+        this.form.setValue(information);
+      });
   }
 
   save() {
