@@ -1,7 +1,9 @@
-<app-header></app-header>
+<div class="app-root__container">
+  <app-header></app-header>
 
-<app-sidenav [opened]="canDisplaySidenav">
-  <div class="app-root__content">
-    <router-outlet></router-outlet>
-  </div>
-</app-sidenav>
+  <app-sidenav [opened]="canDisplaySidenav">
+    <div class="app-root__content">
+      <router-outlet></router-outlet>
+    </div>
+  </app-sidenav>
+</div>
