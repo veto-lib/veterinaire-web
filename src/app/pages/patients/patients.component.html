@@ -39,7 +39,7 @@
     </ng-container>
 
     <ng-container matColumnDef="medicalRecord">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Dossier médical</th>
+      <th mat-header-cell *matHeaderCellDef>Dossier médical</th>
       <td mat-cell *matCellDef="let element">
         <a mat-button [routerLink]="'/dossier'" *ngIf="element.favorite"
           >Consulter</a
