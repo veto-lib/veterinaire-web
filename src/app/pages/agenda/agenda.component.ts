@@ -47,7 +47,7 @@ export class AgendaComponent implements OnInit {
   }
 
   hourClicked(date: Date) {
-    this.modal.open(CreateEventModalComponent, { data: date })
+    this.modal.open(CreateEventModalComponent, { data: date, disableClose: true })
       .afterClosed()
       .subscribe((event: CreateEvent | undefined) => {
         if (!!event) {
