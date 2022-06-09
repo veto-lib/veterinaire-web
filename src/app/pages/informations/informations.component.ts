@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { InformationsService } from 'src/app/services/informations.service';
@@ -31,5 +31,10 @@ export class InformationsComponent implements OnInit {
   save() {
     this.form.markAsPristine();
     this.informationService.updateInformation(this.form.value).subscribe();
+  }
+
+  @HostListener('window:beforeunload')
+  canDeactivate(): boolean {
+    return this.form.pristine;
   }
 }
