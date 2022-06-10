@@ -1,6 +1,7 @@
 import { CalendarEvent } from 'angular-calendar';
 
 import { IPatient } from './patient';
+import { IDoctor } from './doctor';
 
 const CALENDAR_EVENT_COLOR = {
   primary: '#AD2121',
@@ -13,6 +14,7 @@ export interface IEvent {
   start: Date;
   end: Date;
   patient: IPatient;
+  doctor: IDoctor
   notes: string;
   callId: string;
 }
@@ -22,6 +24,7 @@ export interface CreateEvent {
   start: Date;
   end: Date;
   patient: string;
+  doctor: string;
   notes: string;
 }
 

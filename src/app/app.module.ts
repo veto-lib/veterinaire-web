@@ -31,6 +31,7 @@ import { InformationsComponent } from './pages/informations/informations.compone
 import { RecordComponent } from './pages/record/record.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { YesNoModalComponent } from './components/yes-no-modal/yes-no-modal.component';
+import { GenderPipe } from './pipes/gender.pipe';
 
 registerLocaleData(localeFr);
 
@@ -62,6 +63,7 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     RecordComponent,
     UserCardComponent,
     YesNoModalComponent,
+    GenderPipe,
   ],
   imports: [
     BrowserModule,

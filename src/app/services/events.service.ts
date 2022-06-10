@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
+import { take } from 'rxjs/operators';
 import * as moment from 'moment';
 
 import { CreateEvent, IEvent } from '../models/event';
@@ -29,6 +30,13 @@ export class EventsService {
         gender: 'F',
         favorite: false,
       },
+      doctor: {
+        email: 'huguette.hall',
+        firstName: 'Huguette',
+        lastName: 'Hall',
+        birthDate: '02/01/1991',
+        gender: 'F',
+      }
     },
     {
       id: randomString(),
@@ -45,11 +53,24 @@ export class EventsService {
         gender: 'M',
         favorite: true,
       },
+      doctor: {
+        email: 'huguette.hall',
+        firstName: 'Huguette',
+        lastName: 'Hall',
+        birthDate: '02/01/1991',
+        gender: 'F',
+      }
     },
   ];
 
   getMyEvents(): Observable<IEvent[]> {
     return of(this.events);
+  }
+
+  getLastRecentEvents(patientMail: string): Observable<IEvent[]> {
+    return of(this.events).pipe(
+      take(3)
+    );
   }
 
   createEvent(event: CreateEvent): Observable<void> {
@@ -65,6 +86,13 @@ export class EventsService {
         gender: 'F',
         favorite: false,
       },
+      doctor: {
+        email: 'huguette.hall',
+        firstName: 'Huguette',
+        lastName: 'Hall',
+        birthDate: '02/01/1991',
+        gender: 'F',
+      }
     });
     return of();
   }

@@ -1,16 +1,16 @@
-<mat-card class="app-user-card__card">
+<mat-card class="app-user-card__card" *ngIf="patient">
   <mat-card-header>
     <div mat-card-avatar class="app-user-card__card-image"></div>
-    <mat-card-title>Quentin CARITEY</mat-card-title>
+    <mat-card-title>{{ patient.firstName }} {{ patient.lastName.toUpperCase() }}</mat-card-title>
     <mat-card-subtitle>Favorite patient</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <mat-list>
-      <mat-list-item>quentin.caritey@outlook.fr</mat-list-item>
+      <mat-list-item>{{ patient.email }}</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>16/09/1999</mat-list-item>
+      <mat-list-item>{{ patient.birthDate | date:'dd/MM/yyyy' }}</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>Male</mat-list-item>
+      <mat-list-item>{{ patient.gender | gender }}</mat-list-item>
     </mat-list>
   </mat-card-content>
 </mat-card>

@@ -1,56 +1,48 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { IEvent } from 'src/app/models/event';
+import { IPatient } from 'src/app/models/patient';
+import { EventsService } from 'src/app/services/events.service';
+import { PatientsService } from 'src/app/services/patients.service';
 
 @Component({
   templateUrl: './record.component.html',
-  styleUrls: ['./record.component.less']
+  styleUrls: ['./record.component.less'],
 })
 export class RecordComponent implements OnInit {
+  constructor(
+    private patientsService: PatientsService,
+    private eventService: EventsService,
+    private route: ActivatedRoute
+  ) {}
 
-  constructor() { }
+  patient: IPatient;
+  events: IEvent[] = [];
 
   ngOnInit(): void {
+    const patientMail = this.route.snapshot.paramMap.get('patientMail') ?? '';
+    this.patientsService.getMyPatient(patientMail).subscribe((patient) => {
+      this.patient = patient;
+    });
+    this.eventService.getLastRecentEvents(patientMail).subscribe((events) => {
+      this.events = events;
+    });
   }
 
   documents = [
     {
-      name: 'Photos',
+      name: 'Résultat d\'examen',
       updated: new Date('1/1/16'),
     },
     {
-      name: 'Recipes',
+      name: 'Prescription',
       updated: new Date('1/17/16'),
     },
     {
-      name: 'Work',
+      name: 'Arrêt maladie',
       updated: new Date('1/28/16'),
     },
   ];
-
-  notes = [
-    {
-      name: 'Vacation Itinerary',
-      updated: new Date('2/20/16'),
-    },
-    {
-      name: 'Kitchen Remodel',
-      updated: new Date('1/18/16'),
-    },
-  ];
-
-  meetings = [
-    {
-      doctor: 'Dr Hugo Hall',
-      date: new Date('1/1/16'),
-    },
-    {
-      doctor: 'Dr Hugo Hall',
-      date: new Date('1/17/16'),
-    },
-    {
-      doctor: 'Dr Hugo Hall',
-      date: new Date('1/28/16'),
-    }
-  ];
-
 
 }

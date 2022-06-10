@@ -1,26 +1,37 @@
 <div class="app-records__user-card-wrapper">
   <h1>Dossier Médical</h1>
-  <app-user-card></app-user-card>
+  <app-user-card [patient]="patient"></app-user-card>
 </div>
 <mat-list>
   <div mat-subheader>Derniers rendez-vous</div>
-  <mat-list-item *ngFor="let meeting of meetings">
+  <mat-list-item *ngFor="let event of events">
     <mat-icon mat-list-icon>meeting_room</mat-icon>
-    <div mat-line>{{meeting.doctor}}</div>
-    <div mat-line> {{meeting.date | date}} </div>
+    <div mat-line>{{ event.doctor.firstName }} {{ event.doctor.lastName }}</div>
+    <div mat-line>{{ event.start | date: "d MMM y HH:mm" }}</div>
   </mat-list-item>
   <mat-divider></mat-divider>
   <div mat-subheader>Notes des rendez-vous</div>
-  <mat-list-item *ngFor="let note of notes">
+  <mat-list-item *ngFor="let event of events">
     <mat-icon mat-list-icon>note</mat-icon>
-    <div mat-line>{{note.name}}</div>
-    <div mat-line> {{note.updated | date}} </div>
+    <div class="app-records__list-actions">
+      <p>{{ event.start | date: "d MMM y HH:mm" }}</p>
+      <div>
+        <mat-icon class="app-records__action" color="primary"> visibility </mat-icon>
+      </div>
+    </div>
   </mat-list-item>
   <mat-divider></mat-divider>
   <div mat-subheader>Documents annexes</div>
   <mat-list-item *ngFor="let document of documents">
     <mat-icon mat-list-icon>summarize</mat-icon>
-    <div mat-line>{{document.name}}</div>
-    <div mat-line> {{document.updated | date}} </div>
+    <div class="app-records__list-actions">
+      <div>
+        <div mat-line>{{ document.name }}</div>
+        <div mat-line>{{ document.updated | date: "d MMM y HH:mm" }}</div>
+      </div>
+      <div>
+        <mat-icon class="app-records__action" color="primary"> download </mat-icon>
+      </div>
+    </div>
   </mat-list-item>
 </mat-list>

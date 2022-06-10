@@ -4,4 +4,15 @@
     flex-flow: row nowrap;
     justify-content: space-between;
   }
+  &__list-actions {
+    display: flex;
+    flex-flow: row nowrap;
+    & > * {
+      margin: auto 1rem;
+    }
+  }
+  &__action {
+    margin-left: 4rem;
+    cursor: pointer;
+  }
 }

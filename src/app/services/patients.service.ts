@@ -24,7 +24,7 @@ export class PatientsService {
         email: 'harvey.hugues',
         firstName: 'Harvey',
         lastName: 'Hughes',
-        birthDate: '14/04/1993',
+        birthDate: '04/14/1993',
         gender: 'M',
         favorite: true,
       },
@@ -32,7 +32,7 @@ export class PatientsService {
         email: 'henry.hamilton',
         firstName: 'Henry',
         lastName: 'Hamilton',
-        birthDate: '25/07/1982',
+        birthDate: '07/25/1982',
         gender: 'M',
         favorite: false,
       },
@@ -40,7 +40,7 @@ export class PatientsService {
         email: 'harrison.hernandez',
         firstName: 'Harrison',
         lastName: 'Hernandez',
-        birthDate: '12/03/1961',
+        birthDate: '04/03/1961',
         gender: 'F',
         favorite: true,
       },
@@ -48,7 +48,7 @@ export class PatientsService {
         email: 'hamza.hill',
         firstName: 'Hamza',
         lastName: 'Hill',
-        birthDate: '13/02/1958',
+        birthDate: '02/13/1958',
         gender: 'M',
         favorite: false,
       },
@@ -56,7 +56,7 @@ export class PatientsService {
         email: 'hershel.holmes',
         firstName: 'Hershel',
         lastName: 'Holmes',
-        birthDate: '28/01/1945',
+        birthDate: '01/28/1945',
         gender: 'F',
         favorite: false,
       },
@@ -64,7 +64,7 @@ export class PatientsService {
         email: 'herschel.henderson',
         firstName: 'Herschel',
         lastName: 'Henderson',
-        birthDate: '29/07/1978',
+        birthDate: '07/29/1978',
         gender: 'F',
         favorite: true,
       },
@@ -72,7 +72,7 @@ export class PatientsService {
         email: 'haskel.hunt',
         firstName: 'Haskel',
         lastName: 'Hunt',
-        birthDate: '16/12/1970',
+        birthDate: '12/16/1970',
         gender: 'M',
         favorite: true,
       },
@@ -85,5 +85,16 @@ export class PatientsService {
         favorite: false,
       },
     ]);
+  }
+
+  getMyPatient(email: string): Observable<IPatient> {
+    return of({
+      email: 'hugo.hall',
+      firstName: 'Hugo',
+      lastName: 'Hall',
+      birthDate: '02/01/1992',
+      gender: 'F',
+      favorite: false,
+    });
   }
 }

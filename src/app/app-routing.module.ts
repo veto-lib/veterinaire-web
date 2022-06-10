@@ -20,7 +20,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     canDeactivate: [UnsavedChangesGuard],
   },
-  { path: 'dossier', component: RecordComponent, canActivate: [AuthGuard] },
+  { path: 'dossier/:patientMail', component: RecordComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/' },
 ];
 
