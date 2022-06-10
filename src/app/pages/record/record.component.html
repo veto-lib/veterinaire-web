@@ -16,7 +16,9 @@
     <div class="app-records__list-actions">
       <p>{{ event.start | date: "d MMM y HH:mm" }}</p>
       <div>
-        <mat-icon class="app-records__action" color="primary"> visibility </mat-icon>
+        <mat-icon class="app-records__action" color="primary">
+          visibility
+        </mat-icon>
       </div>
     </div>
   </mat-list-item>
@@ -29,9 +31,11 @@
         <div mat-line>{{ document.name }}</div>
         <div mat-line>{{ document.uploaded | date: "d MMM y HH:mm" }}</div>
       </div>
-      <div>
-        <mat-icon class="app-records__action" color="primary"> download </mat-icon>
-      </div>
+      <a [href]="document.url" [download]="document.name" target="_blank">
+        <mat-icon class="app-records__action" color="primary">
+          download
+        </mat-icon>
+      </a>
     </div>
   </mat-list-item>
 </mat-list>
