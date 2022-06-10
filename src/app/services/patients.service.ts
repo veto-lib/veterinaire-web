@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
+import { IDocument } from '../models/document';
 import { IPatient } from '../models/patient';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class PatientsService {
         email: 'hugo.hall',
         firstName: 'Hugo',
         lastName: 'Hall',
-        birthDate: '02/01/1992',
+        birthDate: new Date('02/01/1992'),
         gender: 'F',
         favorite: false,
       },
@@ -24,7 +25,7 @@ export class PatientsService {
         email: 'harvey.hugues',
         firstName: 'Harvey',
         lastName: 'Hughes',
-        birthDate: '04/14/1993',
+        birthDate: new Date('04/14/1993'),
         gender: 'M',
         favorite: true,
       },
@@ -32,7 +33,7 @@ export class PatientsService {
         email: 'henry.hamilton',
         firstName: 'Henry',
         lastName: 'Hamilton',
-        birthDate: '07/25/1982',
+        birthDate: new Date('07/25/1982'),
         gender: 'M',
         favorite: false,
       },
@@ -40,7 +41,7 @@ export class PatientsService {
         email: 'harrison.hernandez',
         firstName: 'Harrison',
         lastName: 'Hernandez',
-        birthDate: '04/03/1961',
+        birthDate: new Date('04/03/1961'),
         gender: 'F',
         favorite: true,
       },
@@ -48,7 +49,7 @@ export class PatientsService {
         email: 'hamza.hill',
         firstName: 'Hamza',
         lastName: 'Hill',
-        birthDate: '02/13/1958',
+        birthDate: new Date('02/13/1958'),
         gender: 'M',
         favorite: false,
       },
@@ -56,7 +57,7 @@ export class PatientsService {
         email: 'hershel.holmes',
         firstName: 'Hershel',
         lastName: 'Holmes',
-        birthDate: '01/28/1945',
+        birthDate: new Date('01/28/1945'),
         gender: 'F',
         favorite: false,
       },
@@ -64,7 +65,7 @@ export class PatientsService {
         email: 'herschel.henderson',
         firstName: 'Herschel',
         lastName: 'Henderson',
-        birthDate: '07/29/1978',
+        birthDate: new Date('07/29/1978'),
         gender: 'F',
         favorite: true,
       },
@@ -72,7 +73,7 @@ export class PatientsService {
         email: 'haskel.hunt',
         firstName: 'Haskel',
         lastName: 'Hunt',
-        birthDate: '12/16/1970',
+        birthDate: new Date('12/16/1970'),
         gender: 'M',
         favorite: true,
       },
@@ -80,7 +81,7 @@ export class PatientsService {
         email: 'hersh.howard',
         firstName: 'Hersh',
         lastName: 'Howard',
-        birthDate: '09/10/1999',
+        birthDate: new Date('09/10/1999'),
         gender: 'F',
         favorite: false,
       },
@@ -92,9 +93,29 @@ export class PatientsService {
       email: 'hugo.hall',
       firstName: 'Hugo',
       lastName: 'Hall',
-      birthDate: '02/01/1992',
+      birthDate: new Date('02/01/1992'),
       gender: 'F',
       favorite: false,
     });
+  }
+
+  getPatientDocuments(email: string): Observable<IDocument[]> {
+    return of([
+      {
+        name: "Résultat d'examen",
+        uploaded: new Date('1/1/16'),
+        url: 'http://www.africau.edu/images/default/sample.pdf',
+      },
+      {
+        name: 'Prescription',
+        uploaded: new Date('1/17/16'),
+        url: 'http://www.africau.edu/images/default/sample.pdf',
+      },
+      {
+        name: 'Arrêt maladie',
+        uploaded: new Date('1/28/16'),
+        url: 'http://www.africau.edu/images/default/sample.pdf',
+      },
+    ]);
   }
 }

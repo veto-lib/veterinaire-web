@@ -26,7 +26,7 @@ export class EventsService {
         email: 'hugo.hall',
         firstName: 'Hugo',
         lastName: 'Hall',
-        birthDate: '02/01/1992',
+        birthDate: new Date('02/01/1992'),
         gender: 'F',
         favorite: false,
       },
@@ -34,7 +34,7 @@ export class EventsService {
         email: 'huguette.hall',
         firstName: 'Huguette',
         lastName: 'Hall',
-        birthDate: '02/01/1991',
+        birthDate: new Date('02/01/1991'),
         gender: 'F',
       }
     },
@@ -49,7 +49,7 @@ export class EventsService {
         email: 'harvey.hugues',
         firstName: 'Harvey',
         lastName: 'Hughes',
-        birthDate: '14/04/1993',
+        birthDate: new Date('14/04/1993'),
         gender: 'M',
         favorite: true,
       },
@@ -57,7 +57,7 @@ export class EventsService {
         email: 'huguette.hall',
         firstName: 'Huguette',
         lastName: 'Hall',
-        birthDate: '02/01/1991',
+        birthDate: new Date('02/01/1991'),
         gender: 'F',
       }
     },
@@ -82,7 +82,7 @@ export class EventsService {
         email: 'hugo.hall',
         firstName: 'Hugo',
         lastName: 'Hall',
-        birthDate: '02/01/1992',
+        birthDate: new Date('02/01/1992'),
         gender: 'F',
         favorite: false,
       },
@@ -90,7 +90,7 @@ export class EventsService {
         email: 'huguette.hall',
         firstName: 'Huguette',
         lastName: 'Hall',
-        birthDate: '02/01/1991',
+        birthDate: new Date('02/01/1991'),
         gender: 'F',
       }
     });

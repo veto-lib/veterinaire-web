@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { IDocument } from 'src/app/models/document';
 import { IEvent } from 'src/app/models/event';
 import { IPatient } from 'src/app/models/patient';
+
 import { EventsService } from 'src/app/services/events.service';
 import { PatientsService } from 'src/app/services/patients.service';
 
@@ -19,30 +21,18 @@ export class RecordComponent implements OnInit {
 
   patient: IPatient;
   events: IEvent[] = [];
+  documents: IDocument[] = [];
 
   ngOnInit(): void {
     const patientMail = this.route.snapshot.paramMap.get('patientMail') ?? '';
     this.patientsService.getMyPatient(patientMail).subscribe((patient) => {
       this.patient = patient;
     });
+    this.patientsService.getPatientDocuments(patientMail).subscribe(documents => {
+      this.documents = documents;
+    });
     this.eventService.getLastRecentEvents(patientMail).subscribe((events) => {
       this.events = events;
     });
   }
-
-  documents = [
-    {
-      name: 'Résultat d\'examen',
-      updated: new Date('1/1/16'),
-    },
-    {
-      name: 'Prescription',
-      updated: new Date('1/17/16'),
-    },
-    {
-      name: 'Arrêt maladie',
-      updated: new Date('1/28/16'),
-    },
-  ];
-
 }
