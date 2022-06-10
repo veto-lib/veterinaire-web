@@ -16,7 +16,11 @@
     <div class="app-records__list-actions">
       <p>{{ event.start | date: "d MMM y HH:mm" }}</p>
       <div>
-        <mat-icon class="app-records__action" color="primary">
+        <mat-icon
+          class="app-records__action"
+          color="primary"
+          (click)="visualize(event)"
+        >
           visibility
         </mat-icon>
       </div>

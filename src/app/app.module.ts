@@ -17,20 +17,23 @@ import { adapterFactory } from 'angular-calendar/date-adapters/moment';
 import * as moment from 'moment';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
 
+import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { EventModalComponent } from './components/event-modal/event-modal.component';
+import { CreateEventModalComponent } from './components/create-event-modal/create-event-modal.component';
+import { UserCardComponent } from './components/user-card/user-card.component';
+import { YesNoModalComponent } from './components/yes-no-modal/yes-no-modal.component';
+import { VisualizeNotesModalComponent } from './components/visualize-notes-modal/visualize-notes-modal.component';
+
+import { InformationsComponent } from './pages/informations/informations.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { AgendaComponent } from './pages/agenda/agenda.component';
-import { EventModalComponent } from './components/event-modal/event-modal.component';
-import { CreateEventModalComponent } from './components/create-event-modal/create-event-modal.component';
-import { InformationsComponent } from './pages/informations/informations.component';
 import { RecordComponent } from './pages/record/record.component';
-import { UserCardComponent } from './components/user-card/user-card.component';
-import { YesNoModalComponent } from './components/yes-no-modal/yes-no-modal.component';
+
 import { GenderPipe } from './pipes/gender.pipe';
 
 registerLocaleData(localeFr);
@@ -64,6 +67,7 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     UserCardComponent,
     YesNoModalComponent,
     GenderPipe,
+    VisualizeNotesModalComponent,
   ],
   imports: [
     BrowserModule,
