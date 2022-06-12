@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>{{ event.title }}</h2>
 <mat-dialog-content class="app-event-modal__content">
   <h3 class="app-event-modal__content-date">{{ event.start | date:'d MMM y HH:mm' }} - {{ event.end | date:'d MMM y HH:mm' }}</h3>
-  <div class="app-event-modal__content-call-link">
+  <div class="app-event-modal__content-call-link" (click)="joinCall()">
     <span>Rejoindre l'appel vidéo</span>
   </div>
   <p class="app-event-modal__content-notes">

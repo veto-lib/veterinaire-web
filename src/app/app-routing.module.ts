@@ -9,6 +9,7 @@ import { PatientsComponent } from './pages/patients/patients.component';
 import { AgendaComponent } from './pages/agenda/agenda.component';
 import { InformationsComponent } from './pages/informations/informations.component';
 import { RecordComponent } from './pages/record/record.component';
+import { ConsultationComponent } from './pages/consultation/consultation.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
     canDeactivate: [UnsavedChangesGuard],
   },
   { path: 'dossier/:patientMail', component: RecordComponent, canActivate: [AuthGuard] },
+  { path: 'consultation', component: ConsultationComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/' },
 ];
 

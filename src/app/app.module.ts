@@ -33,6 +33,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { AgendaComponent } from './pages/agenda/agenda.component';
 import { RecordComponent } from './pages/record/record.component';
+import { ConsultationComponent } from './pages/consultation/consultation.component';
 
 import { GenderPipe } from './pipes/gender.pipe';
 
@@ -68,6 +69,7 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     YesNoModalComponent,
     GenderPipe,
     VisualizeNotesModalComponent,
+    ConsultationComponent,
   ],
   imports: [
     BrowserModule,
