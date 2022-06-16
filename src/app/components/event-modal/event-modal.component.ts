@@ -18,7 +18,7 @@ export class EventModalComponent implements OnInit {
   ngOnInit(): void {}
 
   joinCall() {
-    this.router.navigate([ 'consultation' ]).then(() => {
+    this.router.navigate([ 'consultation', this.event.id ]).then(() => {
       this.ref.close();
     });
   }

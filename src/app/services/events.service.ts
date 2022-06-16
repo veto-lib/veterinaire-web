@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import * as moment from 'moment';
 
 import { CreateEvent, IEvent } from '../models/event';
@@ -65,6 +65,12 @@ export class EventsService {
 
   getMyEvents(): Observable<IEvent[]> {
     return of(this.events);
+  }
+
+  getEvent(id: string): Observable<IEvent> {
+    return of(this.events).pipe(
+      map(events => events.find(e => e.id === id) as IEvent)
+    );
   }
 
   getLastRecentEvents(patientMail: string): Observable<IEvent[]> {

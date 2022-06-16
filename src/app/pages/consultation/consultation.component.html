@@ -1,1 +1,17 @@
-<p>consultation works!</p>
+<h1>Consultation</h1>
+
+<div class="app-consultation__container">
+  <iframe
+    allow="camera; microphone"
+    title="Inline Frame Example"
+    [src]="callUrl"
+  >
+  </iframe>
+  <div class="app-consultation__notes">
+    <mat-form-field appearance="fill">
+      <mat-label>Notes</mat-label>
+      <textarea matInput [formControl]="notes" rows="15"></textarea>
+    </mat-form-field>
+    <button mat-stroked-button color="primary">Sauvegarder</button>
+  </div>
+</div>
