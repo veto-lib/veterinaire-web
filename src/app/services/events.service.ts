@@ -67,9 +67,9 @@ export class EventsService {
     return of(this.events);
   }
 
-  getEvent(id: string): Observable<IEvent> {
+  getEvent(eventId: IEvent['id']): Observable<IEvent> {
     return of(this.events).pipe(
-      map(events => events.find(e => e.id === id) as IEvent)
+      map(events => events.find(e => e.id === eventId) as IEvent)
     );
   }
 
@@ -100,6 +100,12 @@ export class EventsService {
         gender: 'F',
       }
     });
+    return of();
+  }
+
+  updateNotes(eventId: IEvent['id'], notes: string): Observable<void> {
+    const event = this.events.find(e => e.id === eventId) as IEvent;
+    event.notes = notes;
     return of();
   }
 

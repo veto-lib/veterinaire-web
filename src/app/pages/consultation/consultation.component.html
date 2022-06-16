@@ -4,7 +4,7 @@
   <iframe
     allow="camera; microphone"
     title="Inline Frame Example"
-    [src]="callUrl"
+    [src]="callUrl | sanitizeResource"
   >
   </iframe>
   <div class="app-consultation__notes">
@@ -12,6 +12,6 @@
       <mat-label>Notes</mat-label>
       <textarea matInput [formControl]="notes" rows="15"></textarea>
     </mat-form-field>
-    <button mat-stroked-button color="primary">Sauvegarder</button>
+    <button mat-stroked-button  [disabled]="!canSave" (click)="save()" color="primary">Sauvegarder</button>
   </div>
 </div>

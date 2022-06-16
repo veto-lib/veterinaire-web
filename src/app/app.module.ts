@@ -36,6 +36,7 @@ import { RecordComponent } from './pages/record/record.component';
 import { ConsultationComponent } from './pages/consultation/consultation.component';
 
 import { GenderPipe } from './pipes/gender.pipe';
+import { SanitizeResourcePipe } from './pipes/sanitize.pipe';
 
 registerLocaleData(localeFr);
 
@@ -68,6 +69,7 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     UserCardComponent,
     YesNoModalComponent,
     GenderPipe,
+    SanitizeResourcePipe,
     VisualizeNotesModalComponent,
     ConsultationComponent,
   ],

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 import { IEvent } from 'src/app/models/event';
@@ -17,13 +16,12 @@ export class ConsultationComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private eventService: EventsService,
-    private sanitizer: DomSanitizer
+    private eventsService: EventsService,
   ) {}
 
   ngOnInit(): void {
     const eventId = this.route.snapshot.paramMap.get('eventId') ?? '';
-    this.eventService
+    this.eventsService
       .getEvent(eventId)
       .subscribe((event) => (this.event = event));
   }
@@ -33,8 +31,15 @@ export class ConsultationComponent implements OnInit {
   }
 
   get callUrl() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(
-      `http://localhost:3000/${this.event.id}/${encodeURI(this.doctorName)}`
-    );
+    return `http://localhost:3000/${this.event.id}/${encodeURI(this.doctorName)}`;
+  }
+
+  get canSave(): boolean {
+    return this.notes.dirty;
+  }
+
+  save() {
+    this.notes.markAsPristine();
+    this.eventsService.updateNotes(this.event.id, this.notes.value).subscribe();
   }
 }
