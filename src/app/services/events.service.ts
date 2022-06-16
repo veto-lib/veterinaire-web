@@ -21,7 +21,7 @@ export class EventsService {
       start: moment().subtract(4, 'h').toDate(),
       end: moment().subtract(2, 'h').toDate(),
       notes: 'some notes about the meeting...',
-      callId: 'test',
+      callId: randomString(),
       patient: {
         email: 'hugo.hall',
         firstName: 'Hugo',
@@ -44,7 +44,7 @@ export class EventsService {
       start: moment().add(2, 'h').toDate(),
       end: moment().add(4, 'h').toDate(),
       notes: 'some notes about the meeting...',
-      callId: 'test',
+      callId: randomString(),
       patient: {
         email: 'harvey.hugues',
         firstName: 'Harvey',

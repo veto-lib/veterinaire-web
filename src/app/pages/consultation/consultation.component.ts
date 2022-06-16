@@ -31,7 +31,7 @@ export class ConsultationComponent implements OnInit {
   }
 
   get callUrl() {
-    return `http://localhost:3000/${this.event.id}/${encodeURI(this.doctorName)}`;
+    return `http://localhost:3000/${this.event.callId}/${encodeURI(this.doctorName)}`;
   }
 
   get canSave(): boolean {
