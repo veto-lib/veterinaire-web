@@ -29,7 +29,7 @@ export class RecordComponent implements OnInit {
 
   ngOnInit(): void {
     const patientMail = this.route.snapshot.paramMap.get('patientMail') ?? '';
-    this.patientsService.getMyPatient(patientMail).subscribe((patient) => {
+    this.patientsService.getPatient(patientMail).subscribe((patient) => {
       this.patient = patient;
     });
     this.patientsService.getPatientDocuments(patientMail).subscribe(documents => {

@@ -88,7 +88,7 @@ export class PatientsService {
     ]);
   }
 
-  getMyPatient(email: string): Observable<IPatient> {
+  getPatient(email: string): Observable<IPatient> {
     return of({
       email: 'hugo.hall',
       firstName: 'Hugo',
