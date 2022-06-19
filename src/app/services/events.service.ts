@@ -28,7 +28,7 @@ export class EventsService {
         lastName: 'Hall',
         birthDate: new Date('02/01/1992'),
         gender: 'F',
-        favorite: false,
+        favorites: [],
       },
       doctor: {
         email: 'huguette.hall',
@@ -51,7 +51,7 @@ export class EventsService {
         lastName: 'Hughes',
         birthDate: new Date('14/04/1993'),
         gender: 'M',
-        favorite: true,
+        favorites: [],
       },
       doctor: {
         email: 'huguette.hall',
@@ -90,7 +90,7 @@ export class EventsService {
         lastName: 'Hall',
         birthDate: new Date('02/01/1992'),
         gender: 'F',
-        favorite: false,
+        favorites: [],
       },
       doctor: {
         email: 'huguette.hall',

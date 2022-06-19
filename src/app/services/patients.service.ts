@@ -19,7 +19,7 @@ export class PatientsService {
         lastName: 'Hall',
         birthDate: new Date('02/01/1992'),
         gender: 'F',
-        favorite: false,
+        favorites: [],
       },
       {
         email: 'harvey.hugues',
@@ -27,7 +27,15 @@ export class PatientsService {
         lastName: 'Hughes',
         birthDate: new Date('04/14/1993'),
         gender: 'M',
-        favorite: true,
+        favorites: [
+          {
+            email: 'harvey.hugues',
+            firstName: 'Harvey',
+            lastName: 'Hughes',
+            birthDate: new Date('04/14/1993'),
+            gender: 'M',
+          },
+        ],
       },
       {
         email: 'henry.hamilton',
@@ -35,7 +43,7 @@ export class PatientsService {
         lastName: 'Hamilton',
         birthDate: new Date('07/25/1982'),
         gender: 'M',
-        favorite: false,
+        favorites: [],
       },
       {
         email: 'harrison.hernandez',
@@ -43,7 +51,15 @@ export class PatientsService {
         lastName: 'Hernandez',
         birthDate: new Date('04/03/1961'),
         gender: 'F',
-        favorite: true,
+        favorites: [
+          {
+            email: 'quentin.caritey@outlook.fr',
+            firstName: 'Harvey',
+            lastName: 'Hughes',
+            birthDate: new Date('04/14/1993'),
+            gender: 'M',
+          },
+        ],
       },
       {
         email: 'hamza.hill',
@@ -51,7 +67,7 @@ export class PatientsService {
         lastName: 'Hill',
         birthDate: new Date('02/13/1958'),
         gender: 'M',
-        favorite: false,
+        favorites: [],
       },
       {
         email: 'hershel.holmes',
@@ -59,7 +75,7 @@ export class PatientsService {
         lastName: 'Holmes',
         birthDate: new Date('01/28/1945'),
         gender: 'F',
-        favorite: false,
+        favorites: [],
       },
       {
         email: 'herschel.henderson',
@@ -67,7 +83,22 @@ export class PatientsService {
         lastName: 'Henderson',
         birthDate: new Date('07/29/1978'),
         gender: 'F',
-        favorite: true,
+        favorites: [
+          {
+            email: 'harvey.hugues',
+            firstName: 'Harvey',
+            lastName: 'Hughes',
+            birthDate: new Date('04/14/1993'),
+            gender: 'M',
+          },
+          {
+            email: 'quentin.caritey@outlook.fr',
+            firstName: 'Harvey',
+            lastName: 'Hughes',
+            birthDate: new Date('04/14/1993'),
+            gender: 'M',
+          },
+        ],
       },
       {
         email: 'haskel.hunt',
@@ -75,7 +106,15 @@ export class PatientsService {
         lastName: 'Hunt',
         birthDate: new Date('12/16/1970'),
         gender: 'M',
-        favorite: true,
+        favorites: [
+          {
+            email: 'harvey.hugues',
+            firstName: 'Harvey',
+            lastName: 'Hughes',
+            birthDate: new Date('04/14/1993'),
+            gender: 'M',
+          },
+        ],
       },
       {
         email: 'hersh.howard',
@@ -83,7 +122,7 @@ export class PatientsService {
         lastName: 'Howard',
         birthDate: new Date('09/10/1999'),
         gender: 'F',
-        favorite: false,
+        favorites: [],
       },
     ]);
   }
@@ -95,7 +134,7 @@ export class PatientsService {
       lastName: 'Hall',
       birthDate: new Date('02/01/1992'),
       gender: 'F',
-      favorite: false,
+      favorites: [],
     });
   }
 

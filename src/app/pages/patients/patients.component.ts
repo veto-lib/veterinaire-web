@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 import { PatientsService } from 'src/app/services/patients.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 import { IPatient } from 'src/app/models/patient';
 import { MatTableDataSource } from '@angular/material/table';
@@ -26,7 +27,7 @@ export class PatientsComponent implements AfterViewInit {
     'medicalRecord'
   ];
 
-  constructor(private service: PatientsService) {}
+  constructor(private service: PatientsService, private auth: AuthService) {}
 
   ngAfterViewInit(): void {
     this.service.getMyPatients().subscribe(patients => {
@@ -34,5 +35,9 @@ export class PatientsComponent implements AfterViewInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+  }
+
+  isFavoriteOfPatient(patient: IPatient): boolean {
+    return !!patient.favorites.find(d => d.email === this.auth.email);
   }
 }
