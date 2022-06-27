@@ -1,116 +1,71 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
-import { map, take } from 'rxjs/operators';
-import * as moment from 'moment';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { CreateEvent, IEvent } from '../models/event';
-
-const randomString = () => (Math.random() + 1).toString(36).substring(7);
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventsService {
-  constructor() {}
-
-  private events: IEvent[] = [
-    {
-      id: randomString(),
-      title: 'A 3 day event',
-      start: moment().subtract(4, 'h').toDate(),
-      end: moment().subtract(2, 'h').toDate(),
-      notes: 'some notes about the meeting...',
-      callId: randomString(),
-      patient: {
-        email: 'hugo.hall',
-        firstName: 'Hugo',
-        lastName: 'Hall',
-        birthDate: new Date('02/01/1992'),
-        gender: 'F',
-        favorites: [],
-      },
-      doctor: {
-        email: 'huguette.hall',
-        firstName: 'Huguette',
-        lastName: 'Hall',
-        birthDate: new Date('02/01/1991'),
-        gender: 'F',
-      }
-    },
-    {
-      id: randomString(),
-      title: 'A draggable and resizable event',
-      start: moment().add(2, 'h').toDate(),
-      end: moment().add(4, 'h').toDate(),
-      notes: 'some notes about the meeting...',
-      callId: randomString(),
-      patient: {
-        email: 'harvey.hugues',
-        firstName: 'Harvey',
-        lastName: 'Hughes',
-        birthDate: new Date('14/04/1993'),
-        gender: 'M',
-        favorites: [],
-      },
-      doctor: {
-        email: 'huguette.hall',
-        firstName: 'Huguette',
-        lastName: 'Hall',
-        birthDate: new Date('02/01/1991'),
-        gender: 'F',
-      }
-    },
-  ];
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   getMyEvents(): Observable<IEvent[]> {
-    return of(this.events);
+    return this.http.get<IEvent[]>(`/doctors/${this.auth.email}/events`).pipe(
+      map((events) =>
+        events.map((event) => {
+          return {
+            ...event,
+            start: new Date(event.start),
+            end: new Date(event.end),
+          };
+        })
+      )
+    );
   }
 
   getEvent(eventId: IEvent['id']): Observable<IEvent> {
-    return of(this.events).pipe(
-      map(events => events.find(e => e.id === eventId) as IEvent)
+    return this.http.get<IEvent>(`/events/${eventId}`).pipe(
+      map((event) => {
+        return {
+          ...event,
+          start: new Date(event.start),
+          end: new Date(event.end),
+        };
+      })
     );
   }
 
   getLastRecentEvents(patientMail: string): Observable<IEvent[]> {
-    return of(this.events).pipe(
-      take(3)
+    return this.http.get<IEvent[]>(`/patients/${patientMail}/events`).pipe(
+      map((events) =>
+        events.map((event) => {
+          return {
+            ...event,
+            start: new Date(event.start),
+            end: new Date(event.end),
+          };
+        })
+      )
     );
   }
 
   createEvent(event: CreateEvent): Observable<void> {
-    this.events.push({
-      id: randomString(),
-      callId: randomString(),
+    return this.http.post<void>('/events', {
       ...event,
-      patient: {
-        email: 'hugo.hall',
-        firstName: 'Hugo',
-        lastName: 'Hall',
-        birthDate: new Date('02/01/1992'),
-        gender: 'F',
-        favorites: [],
-      },
-      doctor: {
-        email: 'huguette.hall',
-        firstName: 'Huguette',
-        lastName: 'Hall',
-        birthDate: new Date('02/01/1991'),
-        gender: 'F',
-      }
     });
-    return of();
   }
 
   updateNotes(eventId: IEvent['id'], notes: string): Observable<void> {
-    const event = this.events.find(e => e.id === eventId) as IEvent;
-    event.notes = notes;
-    return of();
+    return this.http.patch<void>(`/events/${eventId}`, {
+      notes,
+    });
   }
 
   deleteEvent(eventId: IEvent['id']): Observable<void> {
-    this.events = this.events.filter((e) => e.id !== eventId);
-    return of();
+    return this.http.delete<void>(`/events/${eventId}`);
   }
 }

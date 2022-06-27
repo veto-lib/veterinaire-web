@@ -10,7 +10,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import * as moment from 'moment';
 
 import { IPatient } from 'src/app/models/patient';
+import { CreateEvent } from 'src/app/models/event';
+
 import { PatientsService } from 'src/app/services/patients.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   templateUrl: './create-event-modal.component.html',
@@ -20,7 +23,8 @@ export class CreateEventModalComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public date: Date,
     private fb: FormBuilder,
-    private patientsService: PatientsService
+    private patientsService: PatientsService,
+    private auth: AuthService
   ) {}
 
   patients: IPatient[] = [];
@@ -52,5 +56,9 @@ export class CreateEventModalComponent implements OnInit {
     return !!start && !!end && moment(start).isBefore(moment(end))
       ? null
       : { endBeforeStart: 'error' };
+  }
+
+  get outputValue(): CreateEvent {
+    return { ...this.form.value, doctor: this.auth.email };
   }
 }
