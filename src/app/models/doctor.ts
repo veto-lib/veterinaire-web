@@ -5,3 +5,14 @@ export interface IDoctor {
   birthDate: Date;
   gender: 'M' | 'F';
 }
+
+export class Doctor {
+
+  static fromApiObject(doctor: IDoctor): IDoctor {
+    return {
+      ...doctor,
+      birthDate: new Date(doctor.birthDate)
+    };
+  }
+
+}

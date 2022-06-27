@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
@@ -8,20 +9,13 @@ import { IInformation } from '../models/information';
   providedIn: 'root',
 })
 export class InformationsService {
-
-  private information: IInformation = {
-    firstName: 'Hugo',
-    lastName: 'Hall',
-    price: '30$',
-    address: '3 Melbourne Street, NYC'
-  };
+  constructor(private http: HttpClient) {}
 
   getMyInformation(): Observable<IInformation> {
-    return of(this.information);
+    return this.http.get<IInformation>('/doctors/me');
   }
 
   updateInformation(information: IInformation): Observable<void> {
-    this.information = information;
-    return of();
+    return this.http.patch<void>('/doctors/me', information);
   }
 }

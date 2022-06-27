@@ -1,7 +1,7 @@
 import { CalendarEvent } from 'angular-calendar';
 
-import { IPatient } from './patient';
-import { IDoctor } from './doctor';
+import { IPatient, Patient } from './patient';
+import { IDoctor, Doctor } from './doctor';
 
 const CALENDAR_EVENT_COLOR = {
   primary: '#AD2121',
@@ -29,6 +29,16 @@ export interface CreateEvent {
 }
 
 export class Event {
+
+  static fromApiObject(event: IEvent): IEvent {
+    return {
+      ...event,
+      start: new Date(event.start),
+      end: new Date(event.end),
+      patient: Patient.fromApiObject(event.patient),
+      doctor: Doctor.fromApiObject(event.patient)
+    };
+  }
 
   static toCalendarEvent(events: IEvent[]): CalendarEvent<IEvent>[] {
     return events.map(e => ({
