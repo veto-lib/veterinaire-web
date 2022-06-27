@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   get email(): string {
-    return 'quentin.caritey@outlook.fr';
+    return 'hugo.hall';
   }
 
   get isLoggedIn(): boolean {

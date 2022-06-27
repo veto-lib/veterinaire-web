@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import localeFr from '@angular/common/locales/fr';
 
 import {
@@ -37,6 +37,8 @@ import { ConsultationComponent } from './pages/consultation/consultation.compone
 
 import { GenderPipe } from './pipes/gender.pipe';
 import { SanitizeResourcePipe } from './pipes/sanitize.pipe';
+
+import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 
 registerLocaleData(localeFr);
 
@@ -91,7 +93,14 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
       }
     ),
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BaseUrlInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
