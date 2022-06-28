@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
+import { environment } from 'src/environments/environment';
+
 import { IEvent } from 'src/app/models/event';
 
 import { EventsService } from 'src/app/services/events.service';
@@ -31,7 +33,7 @@ export class ConsultationComponent implements OnInit {
   }
 
   get callUrl() {
-    return `http://localhost:3000/${this.event.callId}/${encodeURI(this.doctorName)}`;
+    return `${environment.p2p}/${this.event.callId}/${encodeURI(this.doctorName)}`;
   }
 
   get canSave(): boolean {
