@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 env:
   AWS_REGION: eu-west-1
-  ECR_REPOSITORY: docto-congo
+  ECR_REPOSITORY: docto-congo-front-medecin
   ECS_SERVICE: docto-congo-front-medecin-service
   ECS_CLUSTER: docto-congo-prod
   ECS_TASK_DEFINITION: .aws/task-definition.json
