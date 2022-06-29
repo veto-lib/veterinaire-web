@@ -1,8 +1,10 @@
-FROM node:14-alpine AS my-app-build
+FROM node:14-alpine AS builder
 WORKDIR /app
 COPY . .
 RUN npm ci && npm run build
 
-FROM nginx:alpine
-COPY --from=my-app-build /app/dist/angular-medecin /usr/share/nginx/html
-EXPOSE 80
+FROM node:14-alpine
+ENV PORT=80
+COPY --from=builder /app/dist/angular-medecin /app
+
+CMD npx http-server /app -p $PORT
