@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  api: 'http://localhost:3001',
-  p2p: 'http://localhost:3000'
+  api: 'https://docto-congo-back.herokuapp.com',
+  p2p: 'https://docto-congo-p2p-www.herokuapp.com'
 };
