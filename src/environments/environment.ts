@@ -5,7 +5,15 @@
 export const environment = {
   production: false,
   api: 'http://localhost:3001',
-  p2p: 'http://localhost:3000'
+  p2p: 'http://localhost:3000',
+  auth: {
+    tenantId: 'eae410ed-7a7e-451a-b931-636bbc191a74',
+    clientId: '40cb24bc-81b4-44d7-9f96-2e2a089ce685',
+    scope: 'openid profile email api://docto-congo/all',
+    get issuer(): string {
+      return `https://sts.windows.net/${this.tenantId}/v2.0`;
+    }
+  }
 };
 
 /*

@@ -1,4 +1,9 @@
-import { Injectable, LOCALE_ID, NgModule } from '@angular/core';
+import {
+  APP_INITIALIZER,
+  Injectable,
+  LOCALE_ID,
+  NgModule,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +20,7 @@ import {
 } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/moment';
 import * as moment from 'moment';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material/material.module';
@@ -39,6 +45,9 @@ import { GenderPipe } from './pipes/gender.pipe';
 import { SanitizeResourcePipe } from './pipes/sanitize.pipe';
 
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
+import { AuthorizationInterceptor } from './interceptors/auth.interceptor';
+
+import { AuthService } from './services/auth.service';
 
 registerLocaleData(localeFr);
 
@@ -83,6 +92,7 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    OAuthModule.forRoot(),
     CalendarModule.forRoot(
       { provide: DateAdapter, useFactory: momentAdapterFactory },
       {
@@ -98,6 +108,17 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: BaseUrlInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthorizationInterceptor,
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (service: AuthService) => () => service.start(),
+      deps: [AuthService],
       multi: true,
     },
   ],

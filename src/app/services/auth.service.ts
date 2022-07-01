@@ -1,38 +1,54 @@
 import { Injectable } from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
+
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private oauthService: OAuthService) { }
 
-  _isLoggedIn = false;
-
-  async start() {}
+  async start() {
+    this.oauthService.configure({
+      issuer: environment.auth.issuer,
+      redirectUri: window.location.origin,
+      postLogoutRedirectUri: window.location.origin,
+      clientId: environment.auth.clientId,
+      scope: environment.auth.scope,
+      skipIssuerCheck: true,
+      strictDiscoveryDocumentValidation: false
+    });
+    return this.oauthService.loadDiscoveryDocumentAndTryLogin();
+  }
 
   login(): void {
-    this._isLoggedIn = true;
+    this.oauthService.initLoginFlow();
   }
 
   logout(): void {
-    this._isLoggedIn = false;
+    this.oauthService.logOut();
   }
 
   get token(): string | null {
-    return 'izneiueznvnievniznvizevi';
+    return this.oauthService.hasValidAccessToken()
+      ? this.oauthService.getAccessToken()
+      : null;
   }
 
   get name(): string {
-    return 'Quentin CARITEY';
+    const claims = this.oauthService.getIdentityClaims() as any;
+    return claims?.name;
   }
 
   get email(): string {
-    return 'hugo.hall';
+    const claims = this.oauthService.getIdentityClaims() as any;
+    return claims?.email;
   }
 
   get isLoggedIn(): boolean {
-    return this._isLoggedIn;
+    return this.oauthService.getIdentityClaims() !== null;
   }
 
 }

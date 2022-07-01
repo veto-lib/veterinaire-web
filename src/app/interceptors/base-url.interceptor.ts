@@ -15,11 +15,8 @@ export class BaseUrlInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const url = `${environment.api}/api`;
-
-    request = request.clone({
-      url: url + request.url
-    });
-    return next.handle(request);
+    return next.handle(request.clone({
+      url: request.url.startsWith('http') ? request.url : `${environment.api}/api${request.url}`,
+    }));
   }
 }
