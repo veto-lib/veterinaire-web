@@ -19,7 +19,7 @@ export class UnvalidatedUserGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
     return this.doctorsService.findOne(this.auth.email).pipe(
-      catchError(() => of({ enabled: false })),
+      catchError(() => of({ enabled: true })),
       map((doctor) => !doctor.enabled && this.auth.isLoggedIn),
       map((isValid) =>
         isValid ? true : (this.router.navigateByUrl('/'), false)
