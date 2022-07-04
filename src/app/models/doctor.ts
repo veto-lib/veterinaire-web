@@ -4,6 +4,17 @@ export interface IDoctor {
   lastName: string;
   birthDate: Date;
   gender: 'M' | 'F';
+  enabled: boolean;
+}
+
+export interface CreateDoctor {
+  email: string;
+  firstName: string;
+  lastName: string;
+  birthDate: Date;
+  price: string;
+  address: string;
+  gender: 'M' | 'F';
 }
 
 export class Doctor {

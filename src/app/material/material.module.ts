@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -41,6 +42,7 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateMod
     MatDialogModule,
     MatDatepickerModule,
     MatCardModule,
+    MatNativeDateModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,

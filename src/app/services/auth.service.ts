@@ -44,7 +44,7 @@ export class AuthService {
 
   get email(): string {
     const claims = this.oauthService.getIdentityClaims() as any;
-    return claims?.email;
+    return claims?.preferred_username;
   }
 
   get isLoggedIn(): boolean {

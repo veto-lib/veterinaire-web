@@ -7,7 +7,7 @@
     </button>
     <button
       mat-stroked-button
-      [routerLink]="'/patients'"
+      (click)="login()"
       *ngIf="auth.isLoggedIn"
     >
       Commencer

@@ -36,7 +36,7 @@ export class Event {
       start: new Date(event.start),
       end: new Date(event.end),
       patient: Patient.fromApiObject(event.patient),
-      doctor: Doctor.fromApiObject(event.patient)
+      doctor: Doctor.fromApiObject(event.doctor)
     };
   }
 
