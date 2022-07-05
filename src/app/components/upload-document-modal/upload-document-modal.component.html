@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Déposer document</h2>
+<mat-dialog-content class="app-upload-document-modal__content">
+  <form [formGroup]="form">
+    <div class="app-upload-document-modal__content-name">
+      <mat-form-field appearance="fill">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+    </div>
+    <div class="app-upload-document-modal__content-patients">
+      <mat-form-field appearance="fill">
+        <mat-label>Patients</mat-label>
+        <mat-select formControlName="patient">
+          <mat-option *ngFor="let patient of patients" [value]="patient.email"
+            >{{ patient.firstName }} {{ patient.lastName }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="app-upload-document-modal__content-file">
+      <mat-form-field appearance="fill">
+        <mat-label>Fichier</mat-label>
+        <ngx-mat-file-input matInput formControlName="file" type="file"></ngx-mat-file-input>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close cdkFocusInitial>Fermer</button>
+  <button
+    mat-stroked-button
+    [mat-dialog-close]="outputValue"
+    color="primary"
+    [disabled]="!form.valid"
+  >
+    Déposer
+  </button>
+</mat-dialog-actions>

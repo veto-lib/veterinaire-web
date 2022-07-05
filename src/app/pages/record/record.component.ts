@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { IDocument } from 'src/app/models/document';
+import { CreateDocument, IDocument } from 'src/app/models/document';
 import { IEvent } from 'src/app/models/event';
 import { IPatient } from 'src/app/models/patient';
 
@@ -10,6 +10,7 @@ import { EventsService } from 'src/app/services/events.service';
 import { PatientsService } from 'src/app/services/patients.service';
 
 import { VisualizeNotesModalComponent } from 'src/app/components/visualize-notes-modal/visualize-notes-modal.component';
+import { UploadDocumentModalComponent } from 'src/app/components/upload-document-modal/upload-document-modal.component';
 
 @Component({
   templateUrl: './record.component.html',
@@ -32,9 +33,11 @@ export class RecordComponent implements OnInit {
     this.patientsService.getPatient(patientMail).subscribe((patient) => {
       this.patient = patient;
     });
-    this.patientsService.getPatientDocuments(patientMail).subscribe(documents => {
-      this.documents = documents;
-    });
+    this.patientsService
+      .getPatientDocuments(patientMail)
+      .subscribe((documents) => {
+        this.documents = documents;
+      });
     this.eventService.getLastRecentEvents(patientMail).subscribe((events) => {
       this.events = events;
     });
@@ -42,5 +45,20 @@ export class RecordComponent implements OnInit {
 
   visualize(event: IEvent) {
     this.modal.open(VisualizeNotesModalComponent, { data: event });
+  }
+
+  openUploadModal() {
+    this.modal
+      .open(UploadDocumentModalComponent)
+      .afterClosed()
+      .subscribe((document: CreateDocument | null) => {
+        if (!!document) {
+          this.patientsService.postPatientDocument(document.patient, document);
+        }
+      });
+  }
+
+  download(document: IDocument) {
+    window.location.href = URL.createObjectURL(document.data as Blob);
   }
 }

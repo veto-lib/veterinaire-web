@@ -29,6 +29,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { EventModalComponent } from './components/event-modal/event-modal.component';
+import { UploadDocumentModalComponent } from './components/upload-document-modal/upload-document-modal.component';
 import { CreateEventModalComponent } from './components/create-event-modal/create-event-modal.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { YesNoModalComponent } from './components/yes-no-modal/yes-no-modal.component';
@@ -76,6 +77,7 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     AgendaComponent,
     EventModalComponent,
     CreateEventModalComponent,
+    UploadDocumentModalComponent,
     InformationsComponent,
     RecordComponent,
     UserCardComponent,

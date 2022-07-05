@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { IDocument, Document } from '../models/document';
+import { IDocument, Document, CreateDocument } from '../models/document';
 import { IPatient, Patient } from '../models/patient';
 
 @Injectable({
@@ -37,5 +37,15 @@ export class PatientsService {
           documents.map((document) => Document.fromApiObject(document))
         )
       );
+  }
+
+  async postPatientDocument(email: string, document: CreateDocument): Promise<IDocument[]> {
+    const data = await document.file.files[0].text();
+    return this.http
+      .post<IDocument[]>(`/patients/${email}/documents`, {
+        ...document,
+        data,
+        file: undefined
+      }).toPromise();
   }
 }
