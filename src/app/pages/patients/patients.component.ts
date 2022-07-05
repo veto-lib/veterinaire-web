@@ -1,12 +1,12 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { PatientsService } from 'src/app/services/patients.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { IPatient } from 'src/app/models/patient';
-import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   templateUrl: './patients.component.html',

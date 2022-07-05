@@ -42,6 +42,7 @@ import { AgendaComponent } from './pages/agenda/agenda.component';
 import { RecordComponent } from './pages/record/record.component';
 import { ConsultationComponent } from './pages/consultation/consultation.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 import { GenderPipe } from './pipes/gender.pipe';
 import { SanitizeResourcePipe } from './pipes/sanitize.pipe';
@@ -86,7 +87,8 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     SanitizeResourcePipe,
     VisualizeNotesModalComponent,
     ConsultationComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 const displaySidenavBlacklist = [
   '/',
   '/inscription',
-  '/attente'
+  '/attente',
+  '/admin'
 ];
 
 @Component({
