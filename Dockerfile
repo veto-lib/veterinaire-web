@@ -8,4 +8,6 @@ ENV PORT=80
 
 COPY --from=builder /app/dist/angular-medecin /app
 
-CMD npx http-server-spa /app /app/index.html $PORT
+WORKDIR /app
+
+CMD npx http-server-spa ./ ./index.html $PORT
