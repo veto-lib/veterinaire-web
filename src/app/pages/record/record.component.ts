@@ -53,12 +53,22 @@ export class RecordComponent implements OnInit {
       .afterClosed()
       .subscribe((document: CreateDocument | null) => {
         if (!!document) {
-          this.patientsService.postPatientDocument(document.patient, document);
+          this.patientsService
+            .postPatientDocument(document.patient, document)
+            .then(() => {
+              const patientMail =
+                this.route.snapshot.paramMap.get('patientMail') ?? '';
+              this.patientsService
+                .getPatientDocuments(patientMail)
+                .subscribe((documents) => {
+                  this.documents = documents;
+                });
+            });
         }
       });
   }
 
   download(document: IDocument) {
-    window.location.href = URL.createObjectURL(document.data as Blob);
+    window.open(URL.createObjectURL(document.data as Blob), '_blank');
   }
 }
