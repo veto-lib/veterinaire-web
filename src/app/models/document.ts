@@ -32,7 +32,7 @@ export class Document {
       byteArrays.push(byteArray);
     }
 
-    const blob = new Blob(byteArrays);
+    const blob = new Blob(byteArrays, { type: 'application/pdf' });
     return blob;
   }
 
