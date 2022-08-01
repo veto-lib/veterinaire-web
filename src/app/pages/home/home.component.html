@@ -1,15 +1,13 @@
 <div class="app-home__container">
   <div class="app-home__section1">
-    <h1>Docto Congo</h1>
-    <h2>L'application pour faciliter le travail des médecins.</h2>
+    <h1>VétoLib</h1>
+    <h2>
+      L'application pour faciliter le travail des vétérinaires au quotidien.
+    </h2>
     <button *ngIf="!auth.isLoggedIn" mat-stroked-button (click)="auth.login()">
       Connexion
     </button>
-    <button
-      mat-stroked-button
-      (click)="login()"
-      *ngIf="auth.isLoggedIn"
-    >
+    <button mat-stroked-button (click)="login()" *ngIf="auth.isLoggedIn">
       Commencer
     </button>
   </div>
@@ -17,22 +15,21 @@
     <div>
       <h2>Gestion du dossier médical</h2>
       <p>
-        Vos patients pourront vous donner l'accès à leur dossier médical
-        dématérialisé.
+        Vous pourrez gérer le dossier médical des animaux en quelques clics.
       </p>
     </div>
     <div>
       <h2>Plannifier ses rendez-vous</h2>
       <p>
-        Notre solution permet de plannifier vos rendez-vous avec vos patients en
-        toute simplicité et gère également le paiement de la consultation.
+        Notre solution permet de plannifier vos rendez-vous avec vos clients en
+        toute simplicité.
       </p>
     </div>
     <div>
       <h2>Visioconférence</h2>
       <p>
-        Vous pourrez passer des appels vidéos en toute sécurité avec vos
-        patients.
+        Vous pourrez passer des appels vidéos en toute sécurité avec vos clients
+        et leurs compagnons.
       </p>
     </div>
   </div>
