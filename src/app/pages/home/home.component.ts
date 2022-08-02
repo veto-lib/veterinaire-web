@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
     this.doctorsService.findOne(this.auth.email).subscribe(
       (doctor) => {
         doctor.enabled
-          ? this.router.navigate(['patients'])
+          ? this.router.navigate(['clients'])
           : this.router.navigate(['attente'])
       },
       () => {

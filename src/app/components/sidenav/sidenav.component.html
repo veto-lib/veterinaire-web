@@ -2,22 +2,22 @@
   <mat-drawer [opened]="opened" disableClose [mode]="'side'" class="app-sidenav__drawer">
     <mat-selection-list [multiple]="false" color="primary">
       <mat-list-option
-        [routerLink]="'/patients'"
-        [selected]="router.url === '/patients'"
+        [routerLink]="'/clients'"
+        [selected]="router.url === '/clients'"
       >
-        Mes patients
+        Mes clients
       </mat-list-option>
       <mat-list-option
         [routerLink]="'/agenda'"
         [selected]="router.url === '/agenda'"
       >
-        Agenda
+        Mon agenda
       </mat-list-option>
       <mat-list-option
-        [routerLink]="'/informations'"
-        [selected]="router.url === '/informations'"
+        [routerLink]="'/clinique'"
+        [selected]="router.url === '/clinique'"
       >
-        Mes informations
+        Ma clinique
       </mat-list-option>
     </mat-selection-list>
   </mat-drawer>

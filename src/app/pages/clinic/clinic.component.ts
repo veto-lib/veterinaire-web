@@ -4,10 +4,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { InformationsService } from 'src/app/services/informations.service';
 
 @Component({
-  templateUrl: './informations.component.html',
-  styleUrls: ['./informations.component.less'],
+  templateUrl: './clinic.component.html',
+  styleUrls: ['./clinic.component.less'],
 })
-export class InformationsComponent implements OnInit {
+export class ClinicComponent implements OnInit {
   form = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],

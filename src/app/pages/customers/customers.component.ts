@@ -9,10 +9,10 @@ import { AuthService } from 'src/app/services/auth.service';
 import { IPatient } from 'src/app/models/patient';
 
 @Component({
-  templateUrl: './patients.component.html',
-  styleUrls: ['./patients.component.less'],
+  templateUrl: './customers.component.html',
+  styleUrls: ['./customers.component.less'],
 })
-export class PatientsComponent implements AfterViewInit {
+export class CustomersComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

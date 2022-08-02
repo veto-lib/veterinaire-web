@@ -35,9 +35,9 @@ import { UserCardComponent } from './components/user-card/user-card.component';
 import { YesNoModalComponent } from './components/yes-no-modal/yes-no-modal.component';
 import { VisualizeNotesModalComponent } from './components/visualize-notes-modal/visualize-notes-modal.component';
 
-import { InformationsComponent } from './pages/informations/informations.component';
+import { ClinicComponent } from './pages/clinic/clinic.component';
 import { HomeComponent } from './pages/home/home.component';
-import { PatientsComponent } from './pages/patients/patients.component';
+import { CustomersComponent } from './pages/customers/customers.component';
 import { AgendaComponent } from './pages/agenda/agenda.component';
 import { RecordComponent } from './pages/record/record.component';
 import { ConsultationComponent } from './pages/consultation/consultation.component';
@@ -73,12 +73,12 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     HeaderComponent,
     SidenavComponent,
     HomeComponent,
-    PatientsComponent,
+    CustomersComponent,
     AgendaComponent,
     EventModalComponent,
     CreateEventModalComponent,
     UploadDocumentModalComponent,
-    InformationsComponent,
+    ClinicComponent,
     RecordComponent,
     UserCardComponent,
     YesNoModalComponent,
