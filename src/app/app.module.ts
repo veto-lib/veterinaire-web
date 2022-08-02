@@ -48,6 +48,7 @@ import { SanitizeResourcePipe } from './pipes/sanitize.pipe';
 
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { AuthorizationInterceptor } from './interceptors/auth.interceptor';
+import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor';
 
 import { AuthService } from './services/auth.service';
 
@@ -117,6 +118,11 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthorizationInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedInterceptor,
       multi: true,
     },
     {
