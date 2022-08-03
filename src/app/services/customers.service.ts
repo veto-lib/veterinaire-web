@@ -5,7 +5,6 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ICustomer, Customer } from '../models/customer';
-import { IClinic } from '../models/clinic';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +12,9 @@ import { IClinic } from '../models/clinic';
 export class CustomersService {
   constructor(private http: HttpClient) {}
 
-  getClinicCustomers(clinicId: IClinic['id']): Observable<ICustomer[]> {
+  getClinicCustomers(): Observable<ICustomer[]> {
     return this.http
-      .get<ICustomer[]>(`/clinics/${clinicId}/customers`)
+      .get<ICustomer[]>(`/customers`)
       .pipe(
         map((customers) =>
           customers.map((customer) => Customer.fromApiObject(customer))
@@ -23,13 +22,9 @@ export class CustomersService {
       );
   }
 
-  getClinicCustomer(
-    clinicId: IClinic['id'],
-    customerEmail: ICustomer['email']
-  ): Observable<ICustomer> {
+  getClinicCustomer(customerEmail: ICustomer['email']): Observable<ICustomer> {
     return this.http
-      .get<ICustomer>(`/clinics/${clinicId}/customers/${customerEmail}`)
+      .get<ICustomer>(`/customers/${customerEmail}`)
       .pipe(map((customer) => Customer.fromApiObject(customer)));
   }
-
 }

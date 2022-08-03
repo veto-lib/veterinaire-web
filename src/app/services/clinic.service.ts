@@ -12,13 +12,13 @@ import { IClinic, Clinic } from '../models/clinic';
 export class ClinicService {
   constructor(private http: HttpClient) {}
 
-  getClinicInformations(clinicId: IClinic['id']): Observable<IClinic> {
-    return this.http.get<IClinic>(`/clinics/${clinicId}`).pipe(
+  getClinicInformations(): Observable<IClinic> {
+    return this.http.get<IClinic>(`/clinic`).pipe(
       map(clinic => Clinic.fromApiObject(clinic))
     );
   }
 
-  updateClinicInformations(clinicId: IClinic['id'], clinic: IClinic): Observable<void> {
-    return this.http.patch<void>(`/clinics/${clinicId}`, clinic);
+  updateClinicInformations(clinic: IClinic): Observable<void> {
+    return this.http.patch<void>(`/clinic`, clinic);
   }
 }

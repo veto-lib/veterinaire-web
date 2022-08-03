@@ -1,21 +1,18 @@
-import { AnimalType } from './animal-type';
+import { AnimalType, Hours, PaymentMeans } from './common';
 
 export interface IClinic {
-  id: string;
   name: string;
   address: string;
-  openingHours: string;
+  phone: string;
+  openingHours: Hours;
   compatibleAnimals: AnimalType[];
+  paymentMeans: PaymentMeans;
 }
 
 export class Clinic {
   static fromApiObject(clinic: IClinic): IClinic {
     return {
-      id: clinic.id,
-      name: clinic.name,
-      address: clinic.address,
-      openingHours: clinic.openingHours,
-      compatibleAnimals: clinic.compatibleAnimals
+      ...clinic,
     };
   }
 }

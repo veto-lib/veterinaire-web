@@ -29,7 +29,7 @@ export class CustomersComponent implements AfterViewInit {
   constructor(private service: CustomersService, private auth: AuthService) {}
 
   ngAfterViewInit(): void {
-    this.service.getClinicCustomers('').subscribe(customers => {
+    this.service.getClinicCustomers().subscribe(customers => {
       this.dataSource = new MatTableDataSource(customers);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

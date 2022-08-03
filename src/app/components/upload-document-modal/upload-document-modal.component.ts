@@ -33,7 +33,7 @@ export class UploadDocumentModalComponent implements OnInit {
 
   ngOnInit() {
     this.customersService
-      .getClinicCustomers('')
+      .getClinicCustomers()
       .subscribe((customers) => (this.customers = customers));
   }
 

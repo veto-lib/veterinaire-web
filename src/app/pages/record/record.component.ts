@@ -32,7 +32,7 @@ export class RecordComponent implements OnInit {
 
   ngOnInit(): void {
     const animalId = this.route.snapshot.paramMap.get('animalId') ?? '';
-    this.customersService.getClinicCustomer('', '').subscribe((customer) => {
+    this.customersService.getClinicCustomer('').subscribe((customer) => {
       this.customer = customer;
     });
     this.animalsService

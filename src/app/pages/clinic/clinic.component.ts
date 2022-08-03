@@ -22,7 +22,7 @@ export class ClinicComponent implements OnInit {
 
   ngOnInit(): void {
     this.clinicService
-      .getClinicInformations('')
+      .getClinicInformations()
       .subscribe((clinic) => {
         this.form.setValue(clinic);
       });
@@ -30,7 +30,7 @@ export class ClinicComponent implements OnInit {
 
   save() {
     this.form.markAsPristine();
-    this.clinicService.updateClinicInformations('', this.form.value).subscribe();
+    this.clinicService.updateClinicInformations(this.form.value).subscribe();
   }
 
   @HostListener('window:beforeunload')

@@ -44,7 +44,7 @@ export class CreateEventModalComponent implements OnInit {
 
   ngOnInit() {
     this.customersService
-      .getClinicCustomers('')
+      .getClinicCustomers()
       .subscribe((customers) => (this.customers = customers));
     this.form.controls['start'].setValue(this.date);
     this.form.controls['end'].setValue(moment(this.date).add(1, 'h').toDate());

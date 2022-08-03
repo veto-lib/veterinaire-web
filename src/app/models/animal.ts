@@ -1,8 +1,10 @@
+import { AnimalType } from './common';
 import { Customer, ICustomer } from './customer';
 
 export interface IAnimal {
   id: string;
   name: string;
+  type: AnimalType;
   birthDate: Date;
   gender: 'M' | 'F';
   owner: ICustomer;

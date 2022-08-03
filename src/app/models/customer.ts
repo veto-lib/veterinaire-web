@@ -1,5 +1,4 @@
 import { Animal, IAnimal } from './animal';
-import { Clinic, IClinic } from './clinic';
 
 export interface ICustomer {
   email: string;
@@ -8,7 +7,6 @@ export interface ICustomer {
   birthDate: Date;
   gender: 'M' | 'F';
   phone: string;
-  clinics: IClinic[];
   animals: IAnimal[];
 }
 
@@ -18,7 +16,6 @@ export class Customer {
     return {
       ...customer,
       birthDate: new Date(customer.birthDate),
-      clinics: customer?.clinics?.map(c => Clinic.fromApiObject(c)) ?? [],
       animals: customer?.animals?.map(a => Animal.fromApiObject(a)) ?? [],
     };
   }

@@ -2,7 +2,7 @@ import { CalendarEvent } from 'angular-calendar';
 
 import { ICustomer, Customer } from './customer';
 import { IVeterinary, Veterinary } from './veterinary';
-import { EventReason } from './event-reason';
+import { EventReason } from './common';
 import { Animal, IAnimal } from './animal';
 
 const CALENDAR_EVENT_COLOR = {

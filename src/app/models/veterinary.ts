@@ -1,9 +1,13 @@
+import { AnimalType, Hours } from './common';
+
 export interface IVeterinary {
   email: string;
   firstName: string;
   lastName: string;
   birthDate: Date;
   gender: 'M' | 'F';
+  workingHours: Hours;
+  compatibleAnimals: AnimalType[];
   enabled: boolean;
 }
 
@@ -18,12 +22,10 @@ export interface CreateVeterinary {
 }
 
 export class Veterinary {
-
   static fromApiObject(veterinary: IVeterinary): IVeterinary {
     return {
       ...veterinary,
-      birthDate: new Date(veterinary.birthDate)
+      birthDate: new Date(veterinary.birthDate),
     };
   }
-
 }
