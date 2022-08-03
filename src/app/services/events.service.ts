@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { CreateEvent, IEvent, Event } from '../models/event';
 import { AuthService } from './auth.service';
+import { ICustomer } from '../models/customer';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class EventsService {
 
   getMyEvents(): Observable<IEvent[]> {
     return this.http
-      .get<IEvent[]>(`/doctors/${this.auth.email}/events`)
+      .get<IEvent[]>(`/veterinaries/${this.auth.email}/events`)
       .pipe(map((events) => events.map((event) => Event.fromApiObject(event))));
   }
 
@@ -25,9 +26,9 @@ export class EventsService {
       .pipe(map((event) => Event.fromApiObject(event)));
   }
 
-  getLastRecentEvents(patientMail: string): Observable<IEvent[]> {
+  getLastRecentEvents(customerEmail: ICustomer['email']): Observable<IEvent[]> {
     return this.http
-      .get<IEvent[]>(`/patients/${patientMail}/events`)
+      .get<IEvent[]>(`/customers/${customerEmail}/events`)
       .pipe(map((events) => events.map((event) => Event.fromApiObject(event))));
   }
 

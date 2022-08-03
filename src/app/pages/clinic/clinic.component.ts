@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { InformationsService } from 'src/app/services/informations.service';
+import { ClinicService } from 'src/app/services/clinic.service';
 
 @Component({
   templateUrl: './clinic.component.html',
@@ -17,20 +17,20 @@ export class ClinicComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private informationService: InformationsService
+    private clinicService: ClinicService
   ) {}
 
   ngOnInit(): void {
-    this.informationService
-      .getMyInformation()
-      .subscribe((information) => {
-        this.form.setValue(information);
+    this.clinicService
+      .getClinicInformations('')
+      .subscribe((clinic) => {
+        this.form.setValue(clinic);
       });
   }
 
   save() {
     this.form.markAsPristine();
-    this.informationService.updateInformation(this.form.value).subscribe();
+    this.clinicService.updateClinicInformations('', this.form.value).subscribe();
   }
 
   @HostListener('window:beforeunload')

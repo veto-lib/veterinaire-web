@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { IPatient } from 'src/app/models/patient';
+import { ICustomer } from 'src/app/models/customer';
 
 @Component({
   selector: 'app-user-card',
@@ -9,7 +9,7 @@ import { IPatient } from 'src/app/models/patient';
 })
 export class UserCardComponent implements OnInit {
 
-  @Input() patient: IPatient;
+  @Input() customer: ICustomer;
 
   constructor() { }
 

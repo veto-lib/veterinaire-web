@@ -7,12 +7,12 @@
         <input matInput formControlName="name" />
       </mat-form-field>
     </div>
-    <div class="app-upload-document-modal__content-patients">
+    <div class="app-upload-document-modal__content-customers">
       <mat-form-field appearance="fill">
-        <mat-label>Patients</mat-label>
-        <mat-select formControlName="patient">
-          <mat-option *ngFor="let patient of patients" [value]="patient.email"
-            >{{ patient.firstName }} {{ patient.lastName }}</mat-option
+        <mat-label>Customers</mat-label>
+        <mat-select formControlName="customer">
+          <mat-option *ngFor="let customer of customers" [value]="customer.email"
+            >{{ customer.firstName }} {{ customer.lastName }}</mat-option
           >
         </mat-select>
       </mat-form-field>

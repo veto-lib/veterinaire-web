@@ -1,4 +1,4 @@
-export interface IDoctor {
+export interface IVeterinary {
   email: string;
   firstName: string;
   lastName: string;
@@ -7,7 +7,7 @@ export interface IDoctor {
   enabled: boolean;
 }
 
-export interface CreateDoctor {
+export interface CreateVeterinary {
   email: string;
   firstName: string;
   lastName: string;
@@ -17,12 +17,12 @@ export interface CreateDoctor {
   gender: 'M' | 'F';
 }
 
-export class Doctor {
+export class Veterinary {
 
-  static fromApiObject(doctor: IDoctor): IDoctor {
+  static fromApiObject(veterinary: IVeterinary): IVeterinary {
     return {
-      ...doctor,
-      birthDate: new Date(doctor.birthDate)
+      ...veterinary,
+      birthDate: new Date(veterinary.birthDate)
     };
   }
 

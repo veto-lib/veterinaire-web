@@ -8,7 +8,8 @@ export interface IDocument {
 
 export interface CreateDocument {
   name: string;
-  patient: string;
+  animal: string;
+  customer: string;
   file: FileInput;
 }
 

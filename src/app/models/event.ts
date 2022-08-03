@@ -1,7 +1,9 @@
 import { CalendarEvent } from 'angular-calendar';
 
-import { IPatient, Patient } from './patient';
-import { IDoctor, Doctor } from './doctor';
+import { ICustomer, Customer } from './customer';
+import { IVeterinary, Veterinary } from './veterinary';
+import { EventReason } from './event-reason';
+import { Animal, IAnimal } from './animal';
 
 const CALENDAR_EVENT_COLOR = {
   primary: '#AD2121',
@@ -13,9 +15,11 @@ export interface IEvent {
   title: string;
   start: Date;
   end: Date;
-  patient: IPatient;
-  doctor: IDoctor
+  customer: ICustomer;
+  animal: IAnimal;
+  veterinary: IVeterinary;
   notes: string;
+  reason: EventReason;
   callId: string;
 }
 
@@ -23,9 +27,11 @@ export interface CreateEvent {
   title: string;
   start: Date;
   end: Date;
-  patient: string;
-  doctor: string;
+  animal: string;
+  customer: string;
+  veterinary: string;
   notes: string;
+  reason: EventReason;
 }
 
 export class Event {
@@ -35,8 +41,9 @@ export class Event {
       ...event,
       start: new Date(event.start),
       end: new Date(event.end),
-      patient: Patient.fromApiObject(event.patient),
-      doctor: Doctor.fromApiObject(event.doctor)
+      animal: Animal.fromApiObject(event.animal),
+      customer: Customer.fromApiObject(event.customer),
+      veterinary: Veterinary.fromApiObject(event.veterinary)
     };
   }
 
@@ -45,6 +52,8 @@ export class Event {
       start: e.start,
       end: e.end,
       title: e.title,
+      reason: e.reason,
+
       color: CALENDAR_EVENT_COLOR,
       allDay: false,
       resizable: {

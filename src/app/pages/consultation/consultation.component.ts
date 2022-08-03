@@ -28,12 +28,12 @@ export class ConsultationComponent implements OnInit {
       .subscribe((event) => (this.event = event));
   }
 
-  get doctorName() {
-    return `${this.event.doctor.firstName} ${this.event.doctor.lastName}`;
+  get veterinaryName() {
+    return `${this.event.veterinary.firstName} ${this.event.veterinary.lastName}`;
   }
 
   get callUrl() {
-    return `${environment.p2p}/${this.event.callId}/${encodeURI(this.doctorName)}`;
+    return `${environment.p2p}/${this.event.callId}/${encodeURI(this.veterinaryName)}`;
   }
 
   get canSave(): boolean {

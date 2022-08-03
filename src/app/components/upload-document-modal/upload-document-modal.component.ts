@@ -5,10 +5,10 @@ import {
 } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { IPatient } from 'src/app/models/patient';
+import { ICustomer } from 'src/app/models/customer';
 import { CreateDocument } from 'src/app/models/document';
 
-import { PatientsService } from 'src/app/services/patients.service';
+import { CustomersService } from 'src/app/services/customers.service';
 
 @Component({
   templateUrl: './upload-document-modal.component.html',
@@ -18,23 +18,23 @@ export class UploadDocumentModalComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public date: Date,
     private fb: FormBuilder,
-    private patientsService: PatientsService,
+    private customersService: CustomersService,
   ) {}
 
-  patients: IPatient[] = [];
+  customers: ICustomer[] = [];
 
   form = this.fb.group(
     {
       name: ['', Validators.required],
       file: ['', Validators.required],
-      patient: ['', Validators.required],
+      customer: ['', Validators.required],
     }
   );
 
   ngOnInit() {
-    this.patientsService
-      .getMyPatients()
-      .subscribe((patients) => (this.patients = patients));
+    this.customersService
+      .getClinicCustomers('')
+      .subscribe((customers) => (this.customers = customers));
   }
 
   get outputValue(): CreateDocument {

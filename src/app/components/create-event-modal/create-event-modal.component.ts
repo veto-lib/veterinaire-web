@@ -9,10 +9,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import * as moment from 'moment';
 
-import { IPatient } from 'src/app/models/patient';
+import { ICustomer } from 'src/app/models/customer';
 import { CreateEvent } from 'src/app/models/event';
 
-import { PatientsService } from 'src/app/services/patients.service';
+import { CustomersService } from 'src/app/services/customers.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -23,18 +23,18 @@ export class CreateEventModalComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public date: Date,
     private fb: FormBuilder,
-    private patientsService: PatientsService,
+    private customersService: CustomersService,
     private auth: AuthService
   ) {}
 
-  patients: IPatient[] = [];
+  customers: ICustomer[] = [];
 
   form = this.fb.group(
     {
       title: ['', Validators.required],
       start: ['', Validators.required],
       end: ['', Validators.required],
-      patient: ['', Validators.required],
+      customer: ['', Validators.required],
       notes: ['', Validators.required],
     },
     {
@@ -43,9 +43,9 @@ export class CreateEventModalComponent implements OnInit {
   );
 
   ngOnInit() {
-    this.patientsService
-      .getMyPatients()
-      .subscribe((patients) => (this.patients = patients));
+    this.customersService
+      .getClinicCustomers('')
+      .subscribe((customers) => (this.customers = customers));
     this.form.controls['start'].setValue(this.date);
     this.form.controls['end'].setValue(moment(this.date).add(1, 'h').toDate());
   }
@@ -59,6 +59,6 @@ export class CreateEventModalComponent implements OnInit {
   }
 
   get outputValue(): CreateEvent {
-    return { ...this.form.value, doctor: this.auth.email };
+    return { ...this.form.value, veterinary: this.auth.email };
   }
 }

@@ -1,12 +1,12 @@
 <div class="app-records__user-card-wrapper">
   <h1>Dossier Médical</h1>
-  <app-user-card [patient]="patient"></app-user-card>
+  <app-user-card [customer]="customer"></app-user-card>
 </div>
 <mat-list>
   <div mat-subheader>Derniers rendez-vous</div>
   <mat-list-item *ngFor="let event of events">
     <mat-icon mat-list-icon>meeting_room</mat-icon>
-    <div mat-line>{{ event.doctor.firstName }} {{ event.doctor.lastName }}</div>
+    <div mat-line>{{ event.veterinary.firstName }} {{ event.veterinary.lastName }}</div>
     <div mat-line>{{ event.start | date: "d MMM y HH:mm" }}</div>
   </mat-list-item>
   <mat-divider></mat-divider>

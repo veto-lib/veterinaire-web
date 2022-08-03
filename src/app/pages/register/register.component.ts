@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/services/auth.service';
-import { DoctorsService } from 'src/app/services/doctors.service';
+import { VeterinariesService } from 'src/app/services/veterinaries.service';
 
 @Component({
   templateUrl: './register.component.html',
@@ -22,7 +22,7 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private doctorsService: DoctorsService,
+    private veterinariesService: VeterinariesService,
     private auth: AuthService,
     private router: Router
   ) {
@@ -32,7 +32,7 @@ export class RegisterComponent {
   save() {
     this.form.markAsPristine();
     this.form.get('email')?.enable();
-    this.doctorsService.create(this.form.value).subscribe(() => {
+    this.veterinariesService.create(this.form.value).subscribe(() => {
       this.router.navigate(['attente']);
     });
   }
