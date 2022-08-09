@@ -6,7 +6,7 @@ RUN npm ci && npm run build
 FROM node:14-alpine
 ENV PORT=80
 
-COPY --from=builder /app/dist/veterinaire-front /app
+COPY --from=builder /app/dist/veterinaire-web /app
 
 WORKDIR /app
 

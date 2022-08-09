@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "veterinaire-front": {
+    "veterinaire-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/veterinaire-front",
+            "outputPath": "dist/veterinaire-web",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -80,10 +80,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "veterinaire-front:build:production"
+              "browserTarget": "veterinaire-web:build:production"
             },
             "development": {
-              "browserTarget": "veterinaire-front:build:development"
+              "browserTarget": "veterinaire-web:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -91,7 +91,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "veterinaire-front:build"
+            "browserTarget": "veterinaire-web:build"
           }
         },
         "test": {
@@ -117,5 +117,5 @@
       }
     }
   },
-  "defaultProject": "veterinaire-front"
+  "defaultProject": "veterinaire-web"
 }
