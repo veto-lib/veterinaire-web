@@ -8,9 +8,6 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "less"
-        },
-        "@schematics/angular:application": {
-          "strict": true
         }
       },
       "root": "",
@@ -20,6 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "moment"
+            ],
             "outputPath": "dist/veterinaire-web",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -116,6 +116,5 @@
         }
       }
     }
-  },
-  "defaultProject": "veterinaire-web"
+  }
 }

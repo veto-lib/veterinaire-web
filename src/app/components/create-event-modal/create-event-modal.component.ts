@@ -46,8 +46,10 @@ export class CreateEventModalComponent implements OnInit {
     this.customersService
       .getClinicCustomers()
       .subscribe((customers) => (this.customers = customers));
-    this.form.controls['start'].setValue(this.date);
-    this.form.controls['end'].setValue(moment(this.date).add(1, 'h').toDate());
+    this.form.controls['start'].setValue(this.date.toDateString());
+    this.form.controls['end'].setValue(
+      moment(this.date).add(1, 'h').toDate().toDateString()
+    );
   }
 
   endDateAfterStartDate(group: AbstractControl): ValidationErrors | null {
@@ -59,6 +61,15 @@ export class CreateEventModalComponent implements OnInit {
   }
 
   get outputValue(): CreateEvent {
-    return { ...this.form.value, veterinary: this.auth.email };
+    return {
+      title: this.form.value.title as string,
+      start: new Date(this.form.value.start as string),
+      end: new Date(this.form.value.end as string),
+      customer: this.form.value.customer as string,
+      notes: this.form.value.notes as string,
+      veterinary: this.auth.email,
+      animal: 'Chat',
+      reason: 'Consultation',
+    };
   }
 }

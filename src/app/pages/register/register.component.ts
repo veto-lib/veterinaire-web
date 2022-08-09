@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CreateVeterinary } from 'src/app/models/veterinary';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { VeterinariesService } from 'src/app/services/veterinaries.service';
@@ -32,7 +33,7 @@ export class RegisterComponent {
   save() {
     this.form.markAsPristine();
     this.form.get('email')?.enable();
-    this.veterinariesService.create(this.form.value).subscribe(() => {
+    this.veterinariesService.create(this.outputValue).subscribe(() => {
       this.router.navigate(['attente']);
     });
   }
@@ -40,5 +41,17 @@ export class RegisterComponent {
   @HostListener('window:beforeunload')
   canDeactivate(): boolean {
     return this.form.pristine;
+  }
+
+  get outputValue(): CreateVeterinary {
+    return {
+      email: this.auth.email,
+      firstName: this.form.value.firstName as string,
+      lastName: this.form.value.lastName as string,
+      birthDate: new Date(this.form.value.birthDate as string),
+      address: this.form.value.address as string,
+      price: this.form.value.price as string,
+      gender: this.form.value.gender as 'M' | 'F',
+    };
   }
 }
