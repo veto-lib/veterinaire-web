@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+
 import { AuthService } from 'src/app/services/auth.service';
 import { VeterinariesService } from 'src/app/services/veterinaries.service';
 
@@ -18,15 +21,19 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    this.veterinariesService.findOne(this.auth.email).subscribe(
-      (veterinary) => {
-        veterinary.enabled
-          ? this.router.navigate(['clients'])
-          : this.router.navigate(['attente'])
-      },
-      () => {
-        this.router.navigate(['inscription']);
-      }
-    );
+    this.veterinariesService
+      .findOne(this.auth.email)
+      .pipe(
+        tap((veterinary) => {
+          veterinary.enabled
+            ? this.router.navigate(['clients'])
+            : this.router.navigate(['attente']);
+        }),
+        catchError(() => {
+          this.router.navigate(['inscription']);
+          return of();
+        })
+      )
+      .subscribe();
   }
 }
