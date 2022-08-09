@@ -63,7 +63,7 @@ export class AgendaComponent implements OnInit {
       .afterClosed()
       .subscribe((data) => {
         if (!!data) {
-          this.calendarService.deleteEvent(eventToDelete.id).then((events) => {
+          this.calendarService.deleteEvent(eventToDelete.id).subscribe((events) => {
             this.events = events;
             this.refresh.next();
           });
@@ -72,7 +72,7 @@ export class AgendaComponent implements OnInit {
   }
 
   addEvent(event: CreateEvent): void {
-    this.calendarService.createEvent(event).then((events) => {
+    this.calendarService.createEvent(event).subscribe((events) => {
       this.events = events;
       this.refresh.next();
     });

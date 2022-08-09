@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { from, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 import { ICustomer } from '../models/customer';
 import { IDocument, Document, CreateDocument } from '../models/document';
@@ -48,21 +48,22 @@ export class AnimalsService {
       );
   }
 
-  async postAnimalDocument(
+  postAnimalDocument(
     customerEmail: ICustomer['email'],
     animalId: IAnimal['id'],
     document: CreateDocument
-  ): Promise<IDocument[]> {
-    const data = await document.file.files[0].text();
-    return this.http
-      .post<IDocument[]>(
-        `/customers/${customerEmail}/animals/${animalId}/documents`,
-        {
-          ...document,
-          data,
-          file: undefined,
-        }
-      )
-      .toPromise();
+  ): Observable<IDocument[]> {
+    return from(document.file.files[0].text()).pipe(
+      switchMap((data) => {
+        return this.http.post<IDocument[]>(
+          `/customers/${customerEmail}/animals/${animalId}/documents`,
+          {
+            ...document,
+            data,
+            file: undefined,
+          }
+        );
+      })
+    );
   }
 }

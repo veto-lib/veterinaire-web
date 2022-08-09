@@ -5,6 +5,8 @@ import {
 } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+import { FileInput } from 'ngx-material-file-input';
+
 import { ICustomer } from 'src/app/models/customer';
 import { CreateDocument } from 'src/app/models/document';
 
@@ -38,7 +40,12 @@ export class UploadDocumentModalComponent implements OnInit {
   }
 
   get outputValue(): CreateDocument {
-    return { ...this.form.value };
+    return {
+      name: this.form.value.name as string,
+      file: this.form.value.file as unknown as FileInput,
+      customer: this.form.value.customer as string,
+      animal: 'Chat'
+    };
   }
 
 }

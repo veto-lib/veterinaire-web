@@ -57,7 +57,7 @@ export class RecordComponent implements OnInit {
         if (!!document) {
           this.animalsService
             .postAnimalDocument(document.customer, document.animal, document)
-            .then(() => {
+            .subscribe(() => {
               const animalId =
                 this.route.snapshot.paramMap.get('animalId') ?? '';
               this.animalsService

@@ -60,7 +60,7 @@ export const momentAdapterFactory = () => {
 
 @Injectable()
 class CustomDateFormatter extends CalendarNativeDateFormatter {
-  public weekViewHour({ date, locale }: DateFormatterParams): string {
+  public override weekViewHour({ date, locale }: DateFormatterParams): string {
     return new Intl.DateTimeFormat('fr', {
       hour: 'numeric',
       minute: 'numeric',

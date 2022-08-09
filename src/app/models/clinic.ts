@@ -9,6 +9,15 @@ export interface IClinic {
   paymentMeans: PaymentMeans;
 }
 
+// export interface CreateClinic {
+//   name: string;
+//   address: string;
+//   phone: string;
+//   openingHours: Hours;
+//   compatibleAnimals: AnimalType;
+//   paymentMeans: PaymentMeans;
+// }
+
 export class Clinic {
   static fromApiObject(clinic: IClinic): IClinic {
     return {
