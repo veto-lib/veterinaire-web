@@ -1,6 +1,9 @@
 import { Component, HostListener } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatSelectChange } from '@angular/material/select';
 import { Router } from '@angular/router';
+
+import { AnimalType } from 'src/app/models/common';
 import { CreateVeterinary } from 'src/app/models/veterinary';
 
 import { AuthService } from 'src/app/services/auth.service';
@@ -16,10 +19,20 @@ export class RegisterComponent {
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     birthDate: ['', Validators.required],
-    address: ['', Validators.required],
-    price: ['', Validators.required],
     gender: ['', Validators.required],
   });
+
+  animals: Set<AnimalType> = new Set(['Chat', 'Chien']);
+  animalCtrl = new FormControl();
+  animalTypes: AnimalType[] = [
+    'Chat',
+    'Cheval',
+    'Chien',
+    'Lézard',
+    'Oiseau',
+    'Poisson',
+    'Rongeur',
+  ];
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +41,15 @@ export class RegisterComponent {
     private router: Router
   ) {
     this.form.get('email')?.disable();
+  }
+
+  addAnimal(event: MatSelectChange) {
+    this.animalCtrl.setValue(null);
+    this.animals.add(event.value);
+  }
+
+  removeAnimal(animal: AnimalType) {
+    this.animals.delete(animal);
   }
 
   save() {
@@ -49,9 +71,8 @@ export class RegisterComponent {
       firstName: this.form.value.firstName as string,
       lastName: this.form.value.lastName as string,
       birthDate: new Date(this.form.value.birthDate as string),
-      address: this.form.value.address as string,
-      price: this.form.value.price as string,
       gender: this.form.value.gender as 'M' | 'F',
+      compatibleAnimals: [ ...this.animals ],
     };
   }
 }
