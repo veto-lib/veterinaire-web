@@ -1,10 +1,9 @@
 .app-register {
   &__content {
     &-names,
-    &-price,
-    &-address,
     &-date-gender,
-    &-email {
+    &-email,
+    &-animals {
       display: flex;
       flex-flow: row nowrap;
       margin: 1rem;
@@ -13,7 +12,12 @@
         margin: 1rem;
       }
     }
+    &-animals mat-select {
+      width: auto;
+      margin-left: 2rem;
+    }
   }
+
   &__save {
     display: flex;
     & > button {

@@ -5,34 +5,32 @@
     <div class="app-register__content-email">
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
-        <input
-          matInput
-          formControlName="email"
-        />
+        <input matInput formControlName="email" />
       </mat-form-field>
     </div>
     <div class="app-register__content-names">
       <mat-form-field appearance="fill">
         <mat-label>Prénom</mat-label>
-        <input
-          matInput
-          formControlName="firstName"
-        />
+        <input matInput formControlName="firstName" />
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Nom</mat-label>
-        <input
-          matInput
-          formControlName="lastName"
-        />
+        <input matInput formControlName="lastName" />
       </mat-form-field>
     </div>
     <div class="app-register__content-date-gender">
       <mat-form-field appearance="fill">
         <mat-label>Date de naissance</mat-label>
-        <input matInput [matDatepicker]="birthDate" formControlName="birthDate">
+        <input
+          matInput
+          [matDatepicker]="birthDate"
+          formControlName="birthDate"
+        />
         <mat-hint>JJ/MM/AAAA</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="birthDate"
+        ></mat-datepicker-toggle>
         <mat-datepicker #birthDate></mat-datepicker>
       </mat-form-field>
       <mat-form-field appearance="fill">
@@ -43,28 +41,39 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="app-register__content-address">
+    <div class="app-register__content-animals">
       <mat-form-field appearance="fill">
-        <mat-label>Adresse</mat-label>
-        <input
-          matInput
-          formControlName="address"
-        />
-      </mat-form-field>
-    </div>
-    <div class="app-register__content-price">
-      <mat-form-field appearance="fill">
-        <mat-label>Prix moyen consultation</mat-label>
-        <input
-          matInput
-          formControlName="price"
-        />
+        <mat-label>Animals</mat-label>
+        <mat-chip-list>
+          <mat-chip
+            *ngFor="let animal of animals"
+            (removed)="removeAnimal(animal)"
+          >
+            {{ animal }}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <mat-select
+            (selectionChange)="addAnimal($event)"
+            [formControl]="animalCtrl"
+          >
+            <mat-option *ngFor="let animal of animalTypes" [value]="animal">{{
+              animal
+            }}</mat-option>
+          </mat-select>
+        </mat-chip-list>
       </mat-form-field>
     </div>
   </form>
 </div>
 <div class="app-register__save">
-  <button mat-stroked-button color="primary" [disabled]="!form.valid || form.pristine" (click)="save()">
+  <button
+    mat-stroked-button
+    color="primary"
+    [disabled]="!form.valid || form.pristine"
+    (click)="save()"
+  >
     Inscription
   </button>
 </div>

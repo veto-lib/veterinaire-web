@@ -1,4 +1,4 @@
-import { AnimalType, Hours } from './common';
+import { AnimalType } from './common';
 
 export interface IVeterinary {
   email: string;
@@ -6,7 +6,6 @@ export interface IVeterinary {
   lastName: string;
   birthDate: Date;
   gender: 'M' | 'F';
-  workingHours: Hours;
   compatibleAnimals: AnimalType[];
   enabled: boolean;
 }
@@ -16,9 +15,8 @@ export interface CreateVeterinary {
   firstName: string;
   lastName: string;
   birthDate: Date;
-  price: string;
-  address: string;
   gender: 'M' | 'F';
+  compatibleAnimals: AnimalType[];
 }
 
 export class Veterinary {
