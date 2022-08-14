@@ -31,12 +31,13 @@ export class RecordComponent implements OnInit {
 
   customer: ICustomer;
   get animal(): IAnimal {
-    return this.customer.animals.find(a => a.id.toString() === this.animalId.toString()) as IAnimal;
+    return this.customer.animals.find(
+      (a) => a.id.toString() === this.animalId.toString()
+    ) as IAnimal;
   }
 
   events: IEvent[] = [];
   documents: IDocument[] = [];
-
 
   customerEmail: string;
   animalId: string;
@@ -72,7 +73,9 @@ export class RecordComponent implements OnInit {
 
   openUploadModal() {
     this.modal
-      .open(UploadDocumentModalComponent)
+      .open(UploadDocumentModalComponent, {
+        data: { customer: this.customer, animal: this.animal },
+      })
       .afterClosed()
       .subscribe((document: CreateDocument | null) => {
         if (!!document) {

@@ -1,7 +1,5 @@
 import { FileInput } from 'ngx-material-file-input';
 
-import { AnimalType } from './common';
-
 export interface IDocument {
   name: string;
   uploaded: Date;
@@ -10,7 +8,7 @@ export interface IDocument {
 
 export interface CreateDocument {
   name: string;
-  animal: AnimalType;
+  animal: string;
   customer: string;
   file: FileInput;
 }
