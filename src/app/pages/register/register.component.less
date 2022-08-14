@@ -12,10 +12,6 @@
         margin: 1rem;
       }
     }
-    &-animals mat-select {
-      width: auto;
-      margin-left: 2rem;
-    }
   }
 
   &__save {
@@ -24,4 +20,18 @@
       margin: auto;
     }
   }
+}
+
+::ng-deep .app-register__content-animals .mat-chip-list-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+
+::ng-deep .app-register__content-animals .mat-select-arrow {
+  border-left: 18px solid transparent !important;
+  border-right: none !important;
+  border-top: 18px solid transparent !important;
+  border-image-source: url('/assets/plus.svg') !important;
+  border-image-repeat: stretch !important;
 }
