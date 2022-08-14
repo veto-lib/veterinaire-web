@@ -1,5 +1,16 @@
 .app-customers {
-  &__table {
+  &__tree {
     width: 100%;
+    &-node {
+      display: flex;
+      flex-flow: row nowrap;
+      & > * {
+        margin: 0 1rem;
+      }
+      &-link {
+        color: #3F51B5;
+        text-decoration: underline;
+      }
+    }
   }
 }

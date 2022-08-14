@@ -7,7 +7,8 @@ export interface IAnimal {
   type: AnimalType;
   birthDate: Date;
   gender: 'M' | 'F';
-  owner: ICustomer;
+  owner: ICustomer | null;
+  kind: 'animal',
 }
 
 export class Animal {
@@ -15,7 +16,8 @@ export class Animal {
     return {
       ...animal,
       birthDate: new Date(animal.birthDate),
-      owner: Customer.fromApiObject(animal.owner)
+      kind: 'animal',
+      owner: !!animal.owner ? Customer.fromApiObject(animal.owner) : null
     };
   }
 }

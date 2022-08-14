@@ -8,6 +8,7 @@ export interface ICustomer {
   gender: 'M' | 'F';
   phone: string;
   animals: IAnimal[];
+  kind: 'customer';
 }
 
 export class Customer {
@@ -16,6 +17,7 @@ export class Customer {
     return {
       ...customer,
       birthDate: new Date(customer.birthDate),
+      kind: 'customer',
       animals: customer?.animals?.map(a => Animal.fromApiObject(a)) ?? [],
     };
   }
