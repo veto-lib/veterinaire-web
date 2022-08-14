@@ -7,16 +7,6 @@
         <input matInput formControlName="name" />
       </mat-form-field>
     </div>
-    <div class="app-upload-document-modal__content-customers">
-      <mat-form-field appearance="fill">
-        <mat-label>Customers</mat-label>
-        <mat-select formControlName="customer">
-          <mat-option *ngFor="let customer of customers" [value]="customer.email"
-            >{{ customer.firstName }} {{ customer.lastName }}</mat-option
-          >
-        </mat-select>
-      </mat-form-field>
-    </div>
     <div class="app-upload-document-modal__content-file">
       <mat-form-field appearance="fill">
         <mat-label>Fichier (PDF)</mat-label>

@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { FileInput } from 'ngx-material-file-input';
 
+import { IAnimal } from 'src/app/models/animal';
 import { ICustomer } from 'src/app/models/customer';
 import { CreateDocument } from 'src/app/models/document';
 
@@ -18,7 +19,7 @@ import { CustomersService } from 'src/app/services/customers.service';
 })
 export class UploadDocumentModalComponent implements OnInit {
   constructor(
-    @Inject(MAT_DIALOG_DATA) public date: Date,
+    @Inject(MAT_DIALOG_DATA) public data: { customer: ICustomer, animal: IAnimal },
     private fb: FormBuilder,
     private customersService: CustomersService,
   ) {}
@@ -28,8 +29,7 @@ export class UploadDocumentModalComponent implements OnInit {
   form = this.fb.group(
     {
       name: ['', Validators.required],
-      file: ['', Validators.required],
-      customer: ['', Validators.required],
+      file: ['', Validators.required]
     }
   );
 
@@ -43,8 +43,8 @@ export class UploadDocumentModalComponent implements OnInit {
     return {
       name: this.form.value.name as string,
       file: this.form.value.file as unknown as FileInput,
-      customer: this.form.value.customer as string,
-      animal: 'Chat'
+      animal: this.data.animal.id.toString(),
+      customer: this.data.customer.email
     };
   }
 
