@@ -2,7 +2,7 @@ import { CalendarEvent } from 'angular-calendar';
 
 import { ICustomer, Customer } from './customer';
 import { IVeterinary, Veterinary } from './veterinary';
-import { AnimalType, EventReason } from './common';
+import { EventReason } from './common';
 import { Animal, IAnimal } from './animal';
 
 const CALENDAR_EVENT_COLOR = {
@@ -27,7 +27,7 @@ export interface CreateEvent {
   title: string;
   start: Date;
   end: Date;
-  animal: AnimalType;
+  animal: string;
   customer: string;
   veterinary: string;
   notes: string;
