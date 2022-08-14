@@ -1,51 +1,39 @@
 <h1>Mes Clients</h1>
 
-<div class="app-customers__table-wrapper">
-  <table
-    mat-table
-    [dataSource]="dataSource"
-    class="app-customers__table"
-    matSort
-  >
-    <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Prénom</th>
-      <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
-      <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="birthDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        Date de naissance
-      </th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.birthDate | date: "dd/MM/yyyy" }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="gender">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Sexe</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.gender | gender }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="medicalRecord">
-      <th mat-header-cell *matHeaderCellDef>Dossier médical</th>
-      <td mat-cell *matCellDef="let element">
-        <a mat-button [routerLink]="['/dossier', element.email]">Consulter</a>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-
-  <mat-paginator
-    [pageSizeOptions]="[5, 10, 20]"
-    [pageSize]="10"
-  ></mat-paginator>
+<div class="app-customers__tree">
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+      <button mat-icon-button disabled></button>
+      <div class="app-customers__tree-node">
+        <span>{{ node.value.name }}</span>
+        <mat-divider [vertical]="true"></mat-divider>
+        <span>{{ node.value.type }}</span>
+        <mat-divider [vertical]="true"></mat-divider>
+        <span>{{ node.value.birthDate | date: "dd/MM/yyyy" }}</span>
+        <mat-divider [vertical]="true"></mat-divider>
+        <span>{{ node.value.gender | gender }}</span>
+        <mat-divider [vertical]="true"></mat-divider>
+        <a class="app-customers__tree-node-link" [routerLink]="['/dossier', node.value.id]">Consulter dossier</a>
+      </div>
+    </mat-tree-node>
+    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+      <button mat-icon-button matTreeNodeToggle
+              [attr.aria-label]="'Toggle ' + node.name">
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+        </mat-icon>
+      </button>
+      <div class="app-customers__tree-node">
+        <span>{{ node.value.firstName }} {{ node.value.lastName }}</span>
+        <mat-divider [vertical]="true"></mat-divider>
+        <span>{{ node.value.phone }}</span>
+        <mat-divider [vertical]="true"></mat-divider>
+        <span>{{ node.value.email }}</span>
+        <mat-divider [vertical]="true"></mat-divider>
+        <span>{{ node.value.birthDate | date: "dd/MM/yyyy" }}</span>
+        <mat-divider [vertical]="true"></mat-divider>
+        <span>{{ node.value.gender | gender }}</span>
+      </div>
+    </mat-tree-node>
+  </mat-tree>
 </div>
