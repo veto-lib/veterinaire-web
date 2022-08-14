@@ -1,14 +1,14 @@
 .app-records {
-  &__user-card-wrapper {
+  &__card-wrapper {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-  }
-  &__list-actions {
-    display: flex;
-    flex-flow: row nowrap;
-    & > * {
-      margin: auto 1rem;
+    & > div {
+      display: flex;
+      flex-flow: row nowrap;
+      & > * {
+        margin: 0 1rem;
+      }
     }
   }
   &__action {

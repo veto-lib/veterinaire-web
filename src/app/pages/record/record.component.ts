@@ -7,6 +7,7 @@ import { catchError, zip, of } from 'rxjs';
 import { CreateDocument, IDocument } from 'src/app/models/document';
 import { IEvent } from 'src/app/models/event';
 import { ICustomer } from 'src/app/models/customer';
+import { IAnimal } from 'src/app/models/animal';
 
 import { EventsService } from 'src/app/services/events.service';
 import { CustomersService } from 'src/app/services/customers.service';
@@ -29,8 +30,13 @@ export class RecordComponent implements OnInit {
   ) {}
 
   customer: ICustomer;
+  get animal(): IAnimal {
+    return this.customer.animals.find(a => a.id.toString() === this.animalId.toString()) as IAnimal;
+  }
+
   events: IEvent[] = [];
   documents: IDocument[] = [];
+
 
   customerEmail: string;
   animalId: string;
