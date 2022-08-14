@@ -31,7 +31,8 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { EventModalComponent } from './components/event-modal/event-modal.component';
 import { UploadDocumentModalComponent } from './components/upload-document-modal/upload-document-modal.component';
 import { CreateEventModalComponent } from './components/create-event-modal/create-event-modal.component';
-import { UserCardComponent } from './components/user-card/user-card.component';
+import { CustomerCardComponent } from './components/customer-card/customer-card.component';
+import { AnimalCardComponent } from './components/animal-card/animal-card.component';
 import { YesNoModalComponent } from './components/yes-no-modal/yes-no-modal.component';
 import { VisualizeNotesModalComponent } from './components/visualize-notes-modal/visualize-notes-modal.component';
 
@@ -81,7 +82,8 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     UploadDocumentModalComponent,
     ClinicComponent,
     RecordComponent,
-    UserCardComponent,
+    CustomerCardComponent,
+    AnimalCardComponent,
     YesNoModalComponent,
     GenderPipe,
     SanitizeResourcePipe,

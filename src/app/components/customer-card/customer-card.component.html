@@ -1,12 +1,12 @@
-<mat-card class="app-user-card__card" *ngIf="customer">
+<mat-card class="app-customer-card__card" *ngIf="customer">
   <mat-card-header>
-    <div mat-card-avatar class="app-user-card__card-image"></div>
     <mat-card-title>{{ customer.firstName }} {{ customer.lastName.toUpperCase() }}</mat-card-title>
-    <mat-card-subtitle>Client favori</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <mat-list>
       <mat-list-item>{{ customer.email }}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>{{ customer.phone }}</mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>{{ customer.birthDate | date:'dd/MM/yyyy' }}</mat-list-item>
       <mat-divider></mat-divider>
