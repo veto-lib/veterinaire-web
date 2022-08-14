@@ -68,7 +68,7 @@ export class CreateEventModalComponent implements OnInit {
       customer: this.form.value.customer as string,
       notes: this.form.value.notes as string,
       veterinary: this.auth.email,
-      animal: 'Chat',
+      animal: '1',
       reason: 'Consultation',
     };
   }

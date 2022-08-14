@@ -7,7 +7,6 @@ import {
 } from '@angular/material/tree';
 
 import { CustomersService } from 'src/app/services/customers.service';
-import { AuthService } from 'src/app/services/auth.service';
 
 import { ICustomer } from 'src/app/models/customer';
 import { IAnimal } from 'src/app/models/animal';
@@ -44,12 +43,15 @@ export class CustomersComponent implements AfterViewInit {
     this._transformer,
     (node) => node.level,
     (node) => node.expandable,
-    (node) => (node.kind === 'customer' ? node.animals : [])
+    (node) =>
+      node.kind === 'customer'
+        ? node.animals.map((a) => ({ ...a, owner: node }))
+        : []
   );
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor(private service: CustomersService, private auth: AuthService) {
+  constructor(private service: CustomersService) {
     this.dataSource.data = [];
   }
 

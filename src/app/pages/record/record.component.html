@@ -1,8 +1,13 @@
 <div class="app-records__user-card-wrapper">
   <h1>Dossier Médical</h1>
-  <app-user-card [customer]="customer"></app-user-card>
+  <app-user-card *ngIf="!notFound" [customer]="customer"></app-user-card>
 </div>
-<mat-list>
+<div *ngIf="notFound" class="app-records__not-found">
+  <p>404</p>
+  <mat-divider [vertical]="true"></mat-divider>
+  <p>Not Found</p>
+</div>
+<mat-list *ngIf="!notFound">
   <div mat-subheader>Derniers rendez-vous</div>
   <mat-list-item *ngFor="let event of events">
     <mat-icon mat-list-icon>meeting_room</mat-icon>

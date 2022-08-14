@@ -36,7 +36,7 @@ const routes: Routes = [
     component: AwaitingComponent,
     canActivate: [UnvalidatedUserGuard],
   },
-  { path: 'dossier/:animalId', component: RecordComponent, canActivate: [ValidatedUserGuard] },
+  { path: 'dossier/:customerEmail/:animalId', component: RecordComponent, canActivate: [ValidatedUserGuard] },
   { path: 'consultation/:eventId', component: ConsultationComponent, canActivate: [ValidatedUserGuard] },
   { path: '**', redirectTo: '/' },
 ];

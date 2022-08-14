@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
+import { catchError, zip, of } from 'rxjs';
+
 import { CreateDocument, IDocument } from 'src/app/models/document';
 import { IEvent } from 'src/app/models/event';
 import { ICustomer } from 'src/app/models/customer';
 
 import { EventsService } from 'src/app/services/events.service';
 import { CustomersService } from 'src/app/services/customers.service';
+import { AnimalsService } from 'src/app/services/animals.service';
 
 import { VisualizeNotesModalComponent } from 'src/app/components/visualize-notes-modal/visualize-notes-modal.component';
 import { UploadDocumentModalComponent } from 'src/app/components/upload-document-modal/upload-document-modal.component';
-import { AnimalsService } from 'src/app/services/animals.service';
 
 @Component({
   templateUrl: './record.component.html',
@@ -30,19 +32,32 @@ export class RecordComponent implements OnInit {
   events: IEvent[] = [];
   documents: IDocument[] = [];
 
+  customerEmail: string;
+  animalId: string;
+
+  notFound: boolean = false;
+
   ngOnInit(): void {
-    const animalId = this.route.snapshot.paramMap.get('animalId') ?? '';
-    this.customersService.getClinicCustomer('').subscribe((customer) => {
-      this.customer = customer;
-    });
-    this.animalsService
-      .getAnimalDocuments('', animalId)
-      .subscribe((documents) => {
+    this.animalId = this.route.snapshot.paramMap.get('animalId') ?? '';
+    this.customerEmail =
+      this.route.snapshot.paramMap.get('customerEmail') ?? '';
+
+    zip(
+      this.customersService.getClinicCustomer(this.customerEmail),
+      this.animalsService.getAnimalDocuments(this.customerEmail, this.animalId),
+      this.eventService.getLastRecentEvents(this.customerEmail)
+    )
+      .pipe(
+        catchError(() => {
+          this.notFound = true;
+          return of([]);
+        })
+      )
+      .subscribe(([customer, documents, events]) => {
+        this.customer = customer;
         this.documents = documents;
+        this.events = events;
       });
-    this.eventService.getLastRecentEvents('').subscribe((events) => {
-      this.events = events;
-    });
   }
 
   visualize(event: IEvent) {
@@ -58,10 +73,8 @@ export class RecordComponent implements OnInit {
           this.animalsService
             .postAnimalDocument(document.customer, document.animal, document)
             .subscribe(() => {
-              const animalId =
-                this.route.snapshot.paramMap.get('animalId') ?? '';
               this.animalsService
-                .getAnimalDocuments('', animalId)
+                .getAnimalDocuments(this.customerEmail, this.animalId)
                 .subscribe((documents) => {
                   this.documents = documents;
                 });

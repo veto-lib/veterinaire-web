@@ -13,7 +13,7 @@
         <mat-divider [vertical]="true"></mat-divider>
         <span>{{ node.value.gender | gender }}</span>
         <mat-divider [vertical]="true"></mat-divider>
-        <a class="app-customers__tree-node-link" [routerLink]="['/dossier', node.value.id]">Consulter dossier</a>
+        <a class="app-customers__tree-node-link" [routerLink]="['/dossier', node.value.owner.email, node.value.id]">Consulter dossier</a>
       </div>
     </mat-tree-node>
     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
