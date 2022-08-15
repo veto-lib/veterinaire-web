@@ -4,14 +4,23 @@
   flex-flow: row nowrap;
   justify-content: space-between;
     & iframe {
-      width: 60vw;
+      margin: 0 3rem;
+      flex-grow: 4;
       height: 70vh;
+    }
+  }
+  &__infos {
+    flex-grow: 1;
+    height: 100%;
+    margin: auto;
+    & mat-divider {
+      margin: 3rem 0;
     }
   }
   &__notes {
     display: flex;
     flex-flow: column nowrap;
-    width: 25vw;
+    flex-grow: 1;
     & textarea {
       height: 60vh;
       resize: none;
