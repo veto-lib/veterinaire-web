@@ -89,9 +89,9 @@ export class ClinicComponent implements AfterContentInit {
   toObject(): IClinic {
     return {
       name: this.form.value.name as string,
-      address: this.form.value.name as string,
-      phone: this.form.value.name as string,
-      openingHours: this.form.value.name as string,
+      address: this.form.value.address as string,
+      phone: this.form.value.phone as string,
+      openingHours: this.form.value.openingHours as string,
       compatibleAnimals: this.animals,
       paymentMeans: this.paymentMeans
     };
