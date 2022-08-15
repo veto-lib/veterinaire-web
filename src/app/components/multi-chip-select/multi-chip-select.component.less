@@ -1,0 +1,20 @@
+.app-multi-chip-select__content {
+  & mat-form-field {
+    width: 100%;
+  }
+}
+
+::ng-deep .app-multi-chip-select__content {
+  & .mat-chip-list-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+  }
+  & .mat-select-arrow {
+    border-left: 18px solid transparent !important;
+    border-right: none !important;
+    border-top: 18px solid transparent !important;
+    border-image-source: url('/assets/plus.svg') !important;
+    border-image-repeat: stretch !important;
+  }
+}

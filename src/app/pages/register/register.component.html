@@ -42,28 +42,11 @@
       </mat-form-field>
     </div>
     <div class="app-register__content-animals">
-      <mat-form-field appearance="fill">
-        <mat-label>Animals</mat-label>
-        <mat-chip-list>
-          <mat-chip
-            *ngFor="let animal of animals"
-            (removed)="removeAnimal(animal)"
-          >
-            {{ animal }}
-            <button matChipRemove>
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-chip>
-          <mat-select
-            (selectionChange)="addAnimal($event)"
-            [formControl]="animalCtrl"
-          >
-            <mat-option *ngFor="let animal of animalTypes" [value]="animal">{{
-              animal
-            }}</mat-option>
-          </mat-select>
-        </mat-chip-list>
-      </mat-form-field>
+      <app-multi-chip-select
+        [label]="'Animals'"
+        [possibleValues]="animalTypes"
+        (selectionChanged)="animalSelectionChanged($event)"
+      ></app-multi-chip-select>
     </div>
   </form>
 </div>
