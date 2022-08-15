@@ -25,7 +25,10 @@ export class ConsultationComponent implements OnInit {
     const eventId = this.route.snapshot.paramMap.get('eventId') ?? '';
     this.eventsService
       .getEvent(eventId)
-      .subscribe((event) => (this.event = event));
+      .subscribe((event) => {
+        this.event = event;
+        this.notes.setValue(event.notes);
+      });
   }
 
   get veterinaryName() {
