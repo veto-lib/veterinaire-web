@@ -1,0 +1,24 @@
+<div class="app-multi-chip-select__content">
+  <mat-form-field appearance="fill">
+    <mat-label>{{ label }}</mat-label>
+    <mat-chip-list>
+      <mat-chip
+        *ngFor="let value of dataset"
+        (removed)="remove(value)"
+      >
+        {{ value }}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+      <mat-select
+        (selectionChange)="add($event)"
+        [formControl]="formCtrl"
+      >
+        <mat-option *ngFor="let value of possibleValues" [value]="value">{{
+          value
+        }}</mat-option>
+      </mat-select>
+    </mat-chip-list>
+  </mat-form-field>
+</div>

@@ -22,8 +22,7 @@ export class RegisterComponent {
     gender: ['', Validators.required],
   });
 
-  animals: Set<AnimalType> = new Set(['Chat', 'Chien']);
-  animalCtrl = new FormControl();
+  animals: AnimalType[] = [];
   animalTypes: AnimalType[] = [
     'Chat',
     'Cheval',
@@ -43,13 +42,8 @@ export class RegisterComponent {
     this.form.get('email')?.disable();
   }
 
-  addAnimal(event: MatSelectChange) {
-    this.animalCtrl.setValue(null);
-    this.animals.add(event.value);
-  }
-
-  removeAnimal(animal: AnimalType) {
-    this.animals.delete(animal);
+  animalSelectionChanged(animals: AnimalType[]) {
+    this.animals = animals;
   }
 
   save() {
@@ -72,7 +66,7 @@ export class RegisterComponent {
       lastName: this.form.value.lastName as string,
       birthDate: new Date(this.form.value.birthDate as string),
       gender: this.form.value.gender as 'M' | 'F',
-      compatibleAnimals: [ ...this.animals ],
+      compatibleAnimals: this.animals,
     };
   }
 }

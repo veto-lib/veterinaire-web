@@ -32,6 +32,7 @@ import { EventModalComponent } from './components/event-modal/event-modal.compon
 import { UploadDocumentModalComponent } from './components/upload-document-modal/upload-document-modal.component';
 import { CreateEventModalComponent } from './components/create-event-modal/create-event-modal.component';
 import { CustomerCardComponent } from './components/customer-card/customer-card.component';
+import { MultiChipSelectComponent } from './components/multi-chip-select/multi-chip-select.component';
 import { AnimalCardComponent } from './components/animal-card/animal-card.component';
 import { YesNoModalComponent } from './components/yes-no-modal/yes-no-modal.component';
 import { VisualizeNotesModalComponent } from './components/visualize-notes-modal/visualize-notes-modal.component';
@@ -84,6 +85,7 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     RecordComponent,
     CustomerCardComponent,
     AnimalCardComponent,
+    MultiChipSelectComponent,
     YesNoModalComponent,
     GenderPipe,
     SanitizeResourcePipe,
