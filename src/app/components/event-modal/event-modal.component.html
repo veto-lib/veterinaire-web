@@ -4,9 +4,27 @@
   <div class="app-event-modal__content-call-link" (click)="joinCall()">
     <span>Rejoindre l'appel vidéo</span>
   </div>
-  <p class="app-event-modal__content-notes">
-    {{ event.notes }}
-  </p>
+  <div>
+    <h2>{{ event.customer.firstName }} {{ event.customer.lastName }}</h2>
+    <p>{{ event.customer.birthDate | date:'dd/MM/yyyy' }}</p>
+    <p>{{ event.customer.gender | gender }}</p>
+    <p>{{ event.customer.phone }}</p>
+    <p>{{ event.customer.email }}</p>
+  </div>
+  <mat-divider class="app-event-modal__content-divider"></mat-divider>
+  <div>
+    <h2>{{ event.animal.name }}</h2>
+    <p>{{ event.animal.type }}</p>
+    <p>{{ event.animal.birthDate | date:'dd/MM/yyyy' }}</p>
+    <p>{{ event.animal.gender | gender }}</p>
+  </div>
+  <mat-divider class="app-event-modal__content-divider"></mat-divider>
+  <div>
+    <h2>Notes</h2>
+    <p class="app-event-modal__content-notes">
+      {{ event.notes }}
+    </p>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close cdkFocusInitial>Fermer</button>
