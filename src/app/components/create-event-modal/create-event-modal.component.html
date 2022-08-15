@@ -38,7 +38,7 @@
     <mat-divider></mat-divider>
     <div class="app-create-event-modal__content-customers">
       <mat-form-field appearance="fill">
-        <mat-label>Customers</mat-label>
+        <mat-label>Clients</mat-label>
         <mat-select formControlName="customer">
           <mat-option *ngFor="let customer of customers" [value]="customer.email"
             >{{ customer.firstName }} {{ customer.lastName }}</mat-option
@@ -46,10 +46,30 @@
         </mat-select>
       </mat-form-field>
     </div>
+    <div class="app-create-event-modal__content-animals">
+      <mat-form-field appearance="fill">
+        <mat-label>Animaux</mat-label>
+        <mat-select formControlName="animal">
+          <mat-option *ngFor="let animal of animals" [value]="animal.id"
+            >{{ animal.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="app-create-event-modal__content-motives">
+      <mat-form-field appearance="fill">
+        <mat-label>Motif</mat-label>
+        <mat-select formControlName="motive">
+          <mat-option *ngFor="let reason of eventReasons" [value]="reason"
+            >{{ reason }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
     <div class="app-create-event-modal__content-notes">
       <mat-form-field appearance="fill">
         <mat-label>Notes</mat-label>
-        <textarea matInput formControlName="notes" rows="15"></textarea>
+        <textarea matInput formControlName="notes" rows="8"></textarea>
       </mat-form-field>
     </div>
   </form>
