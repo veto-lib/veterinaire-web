@@ -13,6 +13,9 @@ export class MultiChipSelectComponent implements OnInit {
 
   @Input() label: string = '';
   @Input() possibleValues: unknown[] = [];
+  @Input() set values(values: unknown[]) {
+    values.forEach(v => this.dataset.add(v));
+  }
   @Output() selectionChanged = new EventEmitter<unknown[]>();
 
   constructor() {}

@@ -2,44 +2,55 @@
 
 <div class="app-clinic__content">
   <form [formGroup]="form">
-    <div class="app-clinic__content-names">
-      <mat-form-field appearance="fill">
-        <mat-label>Prénom</mat-label>
-        <input
-          matInput
-          formControlName="firstName"
-        />
-      </mat-form-field>
+    <div class="app-clinic__content-infos">
       <mat-form-field appearance="fill">
         <mat-label>Nom</mat-label>
-        <input
-          matInput
-          formControlName="lastName"
-        />
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Téléphone</mat-label>
+        <input matInput formControlName="phone" />
       </mat-form-field>
     </div>
-    <div class="app-clinic__content-address">
+    <div class="app-clinic__content-infos">
       <mat-form-field appearance="fill">
         <mat-label>Adresse</mat-label>
-        <input
-          matInput
-          formControlName="address"
-        />
+        <input matInput formControlName="address" />
       </mat-form-field>
     </div>
-    <div class="app-clinic__content-price">
+    <div class="app-clinic__content-infos">
       <mat-form-field appearance="fill">
-        <mat-label>Prix moyen consultation</mat-label>
-        <input
-          matInput
-          formControlName="price"
-        />
+        <mat-label>Heures d'ouverture</mat-label>
+        <input matInput formControlName="openingHours" />
       </mat-form-field>
+    </div>
+    <div class="app-clinic__content-infos">
+      <app-multi-chip-select
+        *ngIf="clinic"
+        [label]="'Animaux traités'"
+        [possibleValues]="animalTypes"
+        [values]="clinic.compatibleAnimals"
+        (selectionChanged)="animalSelectionChanged($event)"
+      ></app-multi-chip-select>
+    </div>
+    <div class="app-clinic__content-infos">
+      <app-multi-chip-select
+        *ngIf="clinic"
+        [label]="'Moyens de paiement'"
+        [possibleValues]="paymentMeansTypes"
+        [values]="clinic.paymentMeans"
+        (selectionChanged)="paymentMeansSelectionChanged($event)"
+      ></app-multi-chip-select>
     </div>
   </form>
 </div>
 <div class="app-clinic__save">
-  <button mat-stroked-button color="primary" [disabled]="!form.valid || form.pristine" (click)="save()">
+  <button
+    mat-stroked-button
+    color="primary"
+    [disabled]="!canSave()"
+    (click)="save()"
+  >
     Sauvegarder
   </button>
 </div>
