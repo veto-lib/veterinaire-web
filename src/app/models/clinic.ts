@@ -1,12 +1,12 @@
-import { AnimalType, Hours, PaymentMeans } from './common';
+import { AnimalType, PaymentMeans } from './common';
 
 export interface IClinic {
   name: string;
   address: string;
   phone: string;
-  openingHours: Hours;
+  openingHours: string;
   compatibleAnimals: AnimalType[];
-  paymentMeans: PaymentMeans;
+  paymentMeans: PaymentMeans[];
 }
 
 export class Clinic {
