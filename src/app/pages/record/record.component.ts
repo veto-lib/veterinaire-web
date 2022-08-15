@@ -52,7 +52,7 @@ export class RecordComponent implements OnInit {
     zip(
       this.customersService.getClinicCustomer(this.customerEmail),
       this.animalsService.getAnimalDocuments(this.customerEmail, this.animalId),
-      this.eventService.getLastRecentEvents(this.customerEmail)
+      this.eventService.getLastRecentEvents(this.customerEmail, this.animalId)
     )
       .pipe(
         catchError(() => {
