@@ -1,6 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { MatSelectChange } from '@angular/material/select';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AnimalType } from 'src/app/models/common';
@@ -21,6 +20,8 @@ export class RegisterComponent {
     birthDate: ['', Validators.required],
     gender: ['', Validators.required],
   });
+
+  hasSaved = false;
 
   animals: AnimalType[] = [];
   animalTypes: AnimalType[] = [
@@ -46,17 +47,22 @@ export class RegisterComponent {
     this.animals = animals;
   }
 
+  canSave(): boolean {
+    return this.form.valid && this.animals.length > 0;
+  }
+
   save() {
     this.form.markAsPristine();
     this.form.get('email')?.enable();
     this.veterinariesService.create(this.outputValue).subscribe(() => {
+      this.hasSaved = true;
       this.router.navigate(['attente']);
     });
   }
 
   @HostListener('window:beforeunload')
   canDeactivate(): boolean {
-    return this.form.pristine;
+    return (this.form.pristine && this.animals.length === 0) || this.hasSaved;
   }
 
   get outputValue(): CreateVeterinary {

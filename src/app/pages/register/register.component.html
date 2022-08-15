@@ -43,7 +43,7 @@
     </div>
     <div class="app-register__content-animals">
       <app-multi-chip-select
-        [label]="'Animals'"
+        [label]="'Animaux traités'"
         [possibleValues]="animalTypes"
         (selectionChanged)="animalSelectionChanged($event)"
       ></app-multi-chip-select>
@@ -54,7 +54,7 @@
   <button
     mat-stroked-button
     color="primary"
-    [disabled]="!form.valid || form.pristine"
+    [disabled]="!canSave()"
     (click)="save()"
   >
     Inscription
